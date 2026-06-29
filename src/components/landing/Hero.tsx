@@ -80,7 +80,7 @@ export function Hero() {
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {STATS.map((s, i) => (
               <div
-                key={s.label}
+                key={s.value + s.label}
                 className="glass-dark rounded-2xl p-3.5"
                 style={{ animation: `fade-up 0.7s ${0.1 + i * 0.08}s cubic-bezier(0.16,1,0.3,1) both` }}
               >
