@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - MODIT</title>
+<link rel="stylesheet" href="css/style.css?v=20260701-market4">
+<link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-left">
+      <a href="index.html" class="navbar-logo">
+        <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+        <span>MODIT</span>
+      </a>
+      <nav class="navbar-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Products</a>
+        <a href="shop.html">Categories</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="navbar-right">
+      <button class="icon-btn" id="search-toggle" title="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <a href="cart.html" class="icon-btn" title="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-badge hidden">0</span></a>
+      <button class="icon-btn" id="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Products</a>
+  <a href="shop.html">Categories</a>
+  <a href="about.html">About</a>
+  <a href="cart.html">Cart</a>
+</div>
+
+<div class="search-bar" id="search-bar">
+  <input type="text" placeholder="Search products..." id="global-search">
+</div>
+
+<section class="page-header" style="background:var(--gradient-amber);color:var(--primary-foreground);">
+  <div class="container">
+    <div class="breadcrumb justify-center reveal" style="color:oklch(0 0 0 / 0.5);"><a href="index.html" style="color:oklch(0 0 0 / 0.6);">Home</a><span class="sep" style="color:oklch(0 0 0 / 0.2);">/</span><span>Shopping Cart</span></div>
+    <h1 class="reveal reveal-d1">Your Cart</h1>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="cart-layout">
+      <div id="cart-container"></div>
+      <div class="cart-summary reveal-right" id="cart-summary">
+        <h3>Order Summary</h3>
+        <div class="row"><span>Subtotal</span><span id="cart-subtotal">Rs 0</span></div>
+        <div class="row"><span>Delivery</span><span style="color:#34C759;">Free</span></div>
+        <div class="row"><span>GST (18%)</span><span id="cart-gst">Rs 0</span></div>
+        <div class="row total"><span>Total</span><span id="cart-grand-total">Rs 0</span></div>
+        <a href="checkout.html" class="btn btn-primary btn-lg" style="justify-content:center;">Proceed to Checkout <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="shop.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:12px;">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-logo" style="color:white;">
+          <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+          <span>MODIT</span>
+        </a>
+        <p>India's fastest construction commerce platform.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="#">Careers</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Products</h4><a href="shop.html">Cement</a><a href="shop.html">Paint</a><a href="shop.html">Electrical</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Track Order</a><a href="#">Returns</a></div>
+      <div class="footer-col"><h4>Business</h4><a href="#">For Contractors</a><a href="#">Partner With Us</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MODIT. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" title="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        <a href="#" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" title="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bottom-nav">
+  <div class="mobile-bottom-nav-inner">
+    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Home</span></a>
+    <a href="shop.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><span>Shop</span></a>
+    <a href="cart.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Cart</span></a>
+    <a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account</span></a>
+  </div>
+</div>
+
+<script src="js/app.js?v=20260701-market4"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  MODIT.renderCartPage();
+});
+</script>
+</body>
+</html>

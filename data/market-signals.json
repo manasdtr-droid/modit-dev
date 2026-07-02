@@ -1,0 +1,53 @@
+{
+  "updatedAt": "01 Jul 2026, 09:00 IST",
+  "signals": [
+    {
+      "productId": 1,
+      "materialKey": "cement_43_grade",
+      "label": "Cement 43 Grade",
+      "unit": "50 kg bag",
+      "todayPrice": 380,
+      "previousAiForToday": 376,
+      "aiTomorrowPrice": 384,
+      "confidence": 74,
+      "trend": "up",
+      "source": "MODIT supplier index"
+    },
+    {
+      "productId": 2,
+      "materialKey": "premium_paint_20l",
+      "label": "Premium Paint",
+      "unit": "20 L pail",
+      "todayPrice": 5499,
+      "previousAiForToday": 5520,
+      "aiTomorrowPrice": 5475,
+      "confidence": 68,
+      "trend": "down",
+      "source": "MODIT demand index"
+    },
+    {
+      "productId": 3,
+      "materialKey": "copper_wire_1_5sqmm",
+      "label": "Copper Wire",
+      "unit": "90 m coil",
+      "todayPrice": 1299,
+      "previousAiForToday": 1285,
+      "aiTomorrowPrice": 1312,
+      "confidence": 71,
+      "trend": "up",
+      "source": "Copper-linked index"
+    },
+    {
+      "productId": 4,
+      "materialKey": "vitrified_tile_60x60",
+      "label": "Vitrified Tile",
+      "unit": "sq ft",
+      "todayPrice": 79,
+      "previousAiForToday": 80,
+      "aiTomorrowPrice": 79,
+      "confidence": 63,
+      "trend": "flat",
+      "source": "MODIT regional index"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - MODIT Construction Materials</title>
+<meta name="description" content="Browse India's largest selection of premium construction materials. Cement, paint, tiles, plumbing, electricals and more.">
+<link rel="stylesheet" href="css/style.css?v=20260701-market4">
+<link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-left">
+      <a href="index.html" class="navbar-logo">
+        <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+        <span>MODIT</span>
+      </a>
+      <nav class="navbar-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html" style="color:var(--text-primary);">Products</a>
+        <a href="shop.html">Categories</a>
+        <a href="shop.html">Brands</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="navbar-right">
+      <button class="icon-btn" id="search-toggle" title="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <button class="icon-btn" title="Location"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+      <a href="cart.html" class="icon-btn" title="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-badge hidden">0</span></a>
+      <button class="icon-btn" id="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Products</a>
+  <a href="shop.html">Categories</a>
+  <a href="shop.html">Brands</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</div>
+
+<!-- Search Bar -->
+<div class="search-bar" id="search-bar">
+  <input type="text" placeholder="Search cement, paint, tiles, pipes, power tools..." id="global-search">
+</div>
+
+<!-- Page Header -->
+<section class="page-header" style="background:var(--gradient-amber);color:var(--primary-foreground);">
+  <div class="container">
+    <div class="breadcrumb justify-center reveal" style="color:oklch(0 0 0 / 0.5);"><a href="index.html" style="color:oklch(0 0 0 / 0.6);">Home</a><span class="sep" style="color:oklch(0 0 0 / 0.2);">/</span><span>Products</span></div>
+    <h1 class="reveal reveal-d1">All Products</h1>
+    <p class="reveal reveal-d2" style="color:oklch(0 0 0 / 0.6);">Browse 20,000+ premium construction materials from top brands</p>
+  </div>
+</section>
+
+<!-- Shop Content -->
+<section class="section" style="padding-top:40px;">
+  <div class="container">
+    <div class="shop-layout">
+      <!-- Filters -->
+      <aside class="filter-sidebar reveal-left">
+        <div class="filter-group">
+          <h3>Categories</h3>
+          <label><input type="radio" name="category" value="all" checked onchange="applyFilters()"> All Categories</label>
+          <label><input type="radio" name="category" value="cement" onchange="applyFilters()"> Cement</label>
+          <label><input type="radio" name="category" value="paint" onchange="applyFilters()"> Paint</label>
+          <label><input type="radio" name="category" value="electrical" onchange="applyFilters()"> Electrical</label>
+          <label><input type="radio" name="category" value="plumbing" onchange="applyFilters()"> Plumbing</label>
+          <label><input type="radio" name="category" value="tiles" onchange="applyFilters()"> Tiles</label>
+          <label><input type="radio" name="category" value="tools" onchange="applyFilters()"> Power Tools</label>
+          <label><input type="radio" name="category" value="hardware" onchange="applyFilters()"> Hardware</label>
+          <label><input type="radio" name="category" value="waterproofing" onchange="applyFilters()"> Waterproofing</label>
+        </div>
+        <div class="filter-group">
+          <h3>Brands</h3>
+          <label><input type="checkbox" value="UltraTech" onchange="applyFilters()"> UltraTech</label>
+          <label><input type="checkbox" value="Asian Paints" onchange="applyFilters()"> Asian Paints</label>
+          <label><input type="checkbox" value="Polycab" onchange="applyFilters()"> Polycab</label>
+          <label><input type="checkbox" value="Kajaria" onchange="applyFilters()"> Kajaria</label>
+          <label><input type="checkbox" value="Havells" onchange="applyFilters()"> Havells</label>
+          <label><input type="checkbox" value="Bosch" onchange="applyFilters()"> Bosch</label>
+          <label><input type="checkbox" value="Supreme" onchange="applyFilters()"> Supreme</label>
+        </div>
+        <div class="filter-group">
+          <h3>Price Range</h3>
+          <label><input type="radio" name="price" value="all" checked onchange="applyFilters()"> All Prices</label>
+          <label><input type="radio" name="price" value="0-500" onchange="applyFilters()"> Under Rs 500</label>
+          <label><input type="radio" name="price" value="500-2000" onchange="applyFilters()"> Rs 500 - 2,000</label>
+          <label><input type="radio" name="price" value="2000-5000" onchange="applyFilters()"> Rs 2,000 - 5,000</label>
+          <label><input type="radio" name="price" value="5000+" onchange="applyFilters()"> Above Rs 5,000</label>
+        </div>
+        <button class="btn btn-dark" style="width:100%;justify-content:center;" onclick="resetFilters()">Reset Filters</button>
+      </aside>
+
+      <!-- Products -->
+      <div>
+        <div class="flex items-center justify-between mb-8 reveal flex-wrap gap-4">
+          <p class="text-sm text-gray-500" id="results-count">Showing 12 products</p>
+          <div class="flex items-center gap-3">
+            <input type="text" placeholder="Search products..." id="shop-search" class="border border-[#ECECEC] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#FFC107] w-48 lg:w-64" style="font-family:inherit;">
+            <select id="sort-select" class="border border-[#ECECEC] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#FFC107]" style="font-family:inherit;" onchange="applyFilters()">
+              <option value="default">Sort: Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+        </div>
+        <div class="products-grid" id="shop-products"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-logo" style="color:white;">
+          <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+          <span>MODIT</span>
+        </a>
+        <p>India's fastest construction commerce platform. Delivering premium building materials to your doorstep in hours, not days.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="#">Careers</a><a href="contact.html">Contact</a><a href="#">Blog</a><a href="#">Press</a></div>
+      <div class="footer-col"><h4>Products</h4><a href="shop.html">Cement</a><a href="shop.html">Paint</a><a href="shop.html">Electrical</a><a href="shop.html">Plumbing</a><a href="shop.html">Tiles</a><a href="shop.html">Hardware</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Track Order</a><a href="#">Returns</a><a href="#">Bulk Orders</a><a href="#">Contractor Support</a></div>
+      <div class="footer-col"><h4>Business</h4><a href="#">For Contractors</a><a href="#">Partner With Us</a><a href="#">Vendor Registration</a><a href="#">Corporate Orders</a><a href="#">API Access</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MODIT. All rights reserved. Built for builders, by builders.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" title="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        <a href="#" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" title="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Bottom Nav -->
+<div class="mobile-bottom-nav">
+  <div class="mobile-bottom-nav-inner">
+    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Home</span></a>
+    <a href="shop.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><span>Shop</span></a>
+    <a href="cart.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Cart</span></a>
+    <a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account</span></a>
+  </div>
+</div>
+
+<script src="js/app.js?v=20260701-market4"></script>
+<script>
+function applyFilters() {
+  const cat = document.querySelector('input[name="category"]:checked')?.value || 'all';
+  const selectedBrands = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(c => c.value);
+  const priceRange = document.querySelector('input[name="price"]:checked')?.value || 'all';
+  const sort = document.getElementById('sort-select')?.value || 'default';
+  const search = document.getElementById('shop-search')?.value || '';
+
+  let products = [...MODIT.products];
+
+  if (cat !== 'all') products = products.filter(p => p.category === cat);
+  if (selectedBrands.length) products = products.filter(p => selectedBrands.includes(p.brand));
+  if (search) { const q = search.toLowerCase(); products = products.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q)); }
+  if (priceRange !== 'all') {
+    const [min, max] = priceRange.split('-').map(Number);
+    if (max) products = products.filter(p => p.price >= min && p.price <= max);
+    else products = products.filter(p => p.price >= min);
+  }
+
+  if (sort === 'price-asc') products.sort((a, b) => a.price - b.price);
+  else if (sort === 'price-desc') products.sort((a, b) => b.price - a.price);
+  else if (sort === 'rating') products.sort((a, b) => b.rating - a.rating);
+
+  const container = document.getElementById('shop-products');
+  if (!products.length) {
+    container.innerHTML = '<div class="col-span-full text-center py-20"><svg class="mx-auto mb-4 text-gray-300" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><p class="text-xl font-semibold text-gray-800">No products match your filters</p><p class="text-gray-500 mt-2">Try adjusting or clearing your filters</p></div>';
+  } else {
+    container.innerHTML = products.map(p => MODIT.productCard(p)).join('');
+    container.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        MODIT.addToCart(parseInt(btn.dataset.id));
+        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>';
+        setTimeout(() => { btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>'; }, 1000);
+      });
+    });
+  }
+  document.getElementById('results-count').textContent = `Showing ${products.length} product${products.length !== 1 ? 's' : ''}`;
+}
+
+function resetFilters() {
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = r.value === 'all' || r.value === 'default');
+  document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+  document.getElementById('shop-search').value = '';
+  document.getElementById('sort-select').value = 'default';
+  applyFilters();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchParam = urlParams.get('search');
+  if (searchParam) { document.getElementById('shop-search').value = searchParam; }
+  const catParam = urlParams.get('category');
+  if (catParam) {
+    const radio = document.querySelector(`input[name="category"][value="${catParam}"]`);
+    if (radio) radio.checked = true;
+  }
+  applyFilters();
+  document.getElementById('shop-search').addEventListener('input', applyFilters);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - MODIT</title>
+<link rel="stylesheet" href="css/style.css?v=20260701-market4">
+<link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-left">
+      <a href="index.html" class="navbar-logo">
+        <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+        <span>MODIT</span>
+      </a>
+      <nav class="navbar-nav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" style="color:var(--text-primary);">Contact</a>
+      </nav>
+    </div>
+    <div class="navbar-right">
+      <a href="cart.html" class="icon-btn" title="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-badge hidden">0</span></a>
+      <button class="icon-btn" id="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</div>
+
+<section class="page-header" style="background:var(--gradient-amber);color:var(--primary-foreground);">
+  <div class="container">
+    <div class="breadcrumb justify-center reveal" style="color:oklch(0 0 0 / 0.5);"><a href="index.html" style="color:oklch(0 0 0 / 0.6);">Home</a><span class="sep" style="color:oklch(0 0 0 / 0.2);">/</span><span>Contact</span></div>
+    <h1 class="reveal reveal-d1">Get in Touch</h1>
+    <p class="reveal reveal-d2" style="color:oklch(0 0 0 / 0.6);">We'd love to hear from you. Reach out anytime.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div class="reveal-left">
+        <p class="text-sm font-semibold text-[#FFC107] uppercase tracking-widest mb-3">Contact Us</p>
+        <h2 class="section-title">Let's Build Together</h2>
+        <p class="text-gray-500 mt-4 mb-8">Have a question about bulk orders, partnership opportunities, or need help with your order? Our team is here to help.</p>
+        <div class="space-y-6">
+          <div class="flex items-start gap-4"><div class="w-12 h-12 bg-[#FFC107]/10 rounded-xl flex items-center justify-center flex-shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div><h4 class="font-semibold">Phone</h4><p class="text-gray-500">+91 1800-MODIT</p><p class="text-gray-500">Mon-Sat, 6AM - 10PM</p></div></div>
+          <div class="flex items-start gap-4"><div class="w-12 h-12 bg-[#FFC107]/10 rounded-xl flex items-center justify-center flex-shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><h4 class="font-semibold">Email</h4><p class="text-gray-500">hello@modit.in</p><p class="text-gray-500">support@modit.in</p></div></div>
+          <div class="flex items-start gap-4"><div class="w-12 h-12 bg-[#FFC107]/10 rounded-xl flex items-center justify-center flex-shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><h4 class="font-semibold">Office</h4><p class="text-gray-500">MODIT Technologies Pvt. Ltd.</p><p class="text-gray-500">BKC, Mumbai - 400051</p></div></div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="bg-white border border-[#ECECEC] rounded-3xl p-8">
+          <h3 class="text-xl font-bold mb-6">Send us a message</h3>
+          <form onsubmit="event.preventDefault(); MODIT.showToast('Message sent! We will get back to you soon.');">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group"><label>First Name</label><input type="text" required placeholder="John"></div>
+              <div class="form-group"><label>Last Name</label><input type="text" required placeholder="Doe"></div>
+            </div>
+            <div class="form-group"><label>Email</label><input type="email" required placeholder="john@example.com"></div>
+            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
+            <div class="form-group"><label>Subject</label><select><option>General Inquiry</option><option>Bulk Order</option><option>Partnership</option><option>Contractor Registration</option><option>Support</option></select></div>
+            <div class="form-group"><label>Message</label><textarea rows="4" required placeholder="Tell us how we can help..."></textarea></div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">Send Message <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-logo" style="color:white;">
+          <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+          <span>MODIT</span>
+        </a>
+        <p>India's fastest construction commerce platform.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="#">Careers</a><a href="contact.html">Contact</a></div>
+      <div class="footer-col"><h4>Products</h4><a href="shop.html">Cement</a><a href="shop.html">Paint</a><a href="shop.html">Electrical</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Track Order</a><a href="#">Returns</a></div>
+      <div class="footer-col"><h4>Business</h4><a href="#">For Contractors</a><a href="#">Partner With Us</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MODIT. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bottom-nav">
+  <div class="mobile-bottom-nav-inner">
+    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Home</span></a>
+    <a href="shop.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><span>Shop</span></a>
+    <a href="cart.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Cart</span></a>
+    <a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account</span></a>
+  </div>
+</div>
+
+<script src="js/app.js?v=20260701-market4"></script>
+</body>
+</html>

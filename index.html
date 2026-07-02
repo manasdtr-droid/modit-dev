@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MODIT - Everything for Building. Delivered in Hours.</title>
+<meta name="description" content="India's quick-commerce platform for construction materials, hardware, plumbing, electricals, tiles and power tools.">
+<link rel="stylesheet" href="css/style.css?v=20260701-market4">
+<link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-left">
+      <a href="index.html" class="navbar-logo">
+        <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+        <span>MODIT</span>
+      </a>
+      <nav class="navbar-nav">
+        <a href="shop.html">Products</a>
+        <a href="#material-market">Market</a>
+        <a href="#contractors">Bulk Quote</a>
+        <a href="#contractors">Contractors</a>
+        <a href="#modit-ai">Modit AI</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="navbar-right">
+      <button class="icon-btn" id="search-toggle" title="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <button class="icon-btn" title="Bengaluru delivery"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></button>
+      <a href="cart.html" class="icon-btn" title="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-badge hidden">0</span></a>
+      <button class="icon-btn" id="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="shop.html">Products</a>
+  <a href="#material-market">Market</a>
+  <a href="#contractors">Bulk Quote</a>
+  <a href="#contractors">Contractors</a>
+  <a href="#modit-ai">Modit AI</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart</a>
+</div>
+
+<div class="search-bar" id="search-bar">
+  <input type="text" placeholder="Search cement, paint, tiles, pipes, tools..." id="global-search">
+</div>
+
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-badge"><span class="animate-pulse-soft" style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block;"></span> Procurement support for Bengaluru job sites</div>
+    <h1>Construction buying, made <span class="highlight">clear and reliable.</span></h1>
+    <p>Order trusted building materials with live market signals, GST-ready billing, bulk quote support and delivery planned for real job-site conditions.</p>
+    <form class="hero-search" onsubmit="event.preventDefault(); MODIT.searchToShop(this.querySelector('input').value);">
+      <input type="text" placeholder="Search cement, paint, wires, pipes, tiles...">
+      <button type="submit">Find Products</button>
+    </form>
+    <div class="hero-actions">
+      <a href="shop.html" class="btn btn-primary btn-lg">Start Buying <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#contractors" class="btn btn-outline btn-lg" style="color:white;border-color:rgba(255,255,255,.25);">Get Bulk Quote</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-icon">01</div><div class="hero-stat-text"><div class="num">45 min</div><div class="label">priority delivery slots</div></div></div>
+      <div class="hero-stat"><div class="hero-stat-icon">02</div><div class="hero-stat-text"><div class="num">20,000+</div><div class="label">building products</div></div></div>
+      <div class="hero-stat"><div class="hero-stat-icon">03</div><div class="hero-stat-text"><div class="num">350+</div><div class="label">verified brands</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="procurement-strip">
+  <div class="container procurement-strip-inner">
+    <div><strong>GST invoice</strong><span>Clean billing for every order.</span></div>
+    <div><strong>Live rate signals</strong><span>See today's price movement before buying.</span></div>
+    <div><strong>Bulk support</strong><span>Project-wise quotes for repeat buyers.</span></div>
+    <div><strong>Site dispatch</strong><span>Delivery planned around unloading and priority.</span></div>
+  </div>
+</section>
+
+<section class="brand-marquee" id="brands">
+  <div class="brand-marquee-inner">
+    <strong>UltraTech</strong><strong>Asian Paints</strong><strong>Polycab</strong><strong>Kajaria</strong><strong>Havells</strong><strong>Bosch</strong><strong>Supreme</strong><strong>Dr Fixit</strong><strong>Hettich</strong><strong>Jaquar</strong>
+    <strong>UltraTech</strong><strong>Asian Paints</strong><strong>Polycab</strong><strong>Kajaria</strong><strong>Havells</strong><strong>Bosch</strong><strong>Supreme</strong><strong>Dr Fixit</strong><strong>Hettich</strong><strong>Jaquar</strong>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="container">
+    <div class="flex items-end justify-between mb-12 gap-6 flex-wrap reveal">
+      <div>
+        <p class="eyebrow">Shop by Category</p>
+        <h2 class="section-title">Materials for every stage of the build.</h2>
+      </div>
+      <a href="shop.html" class="btn btn-dark">View All</a>
+    </div>
+    <div class="categories-grid">
+      <a href="shop.html?category=cement" class="category-card reveal">
+        <div class="icon" style="background:#fff4c2;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a5b00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M6 20l3-12h6l3 12"/><path d="M9 8l1-3h4l1 3"/></svg></div>
+        <div class="name">Cement</div><div class="count">43 products</div>
+      </a>
+      <a href="shop.html?category=paint" class="category-card reveal reveal-d1">
+        <div class="icon" style="background:#e9f5ff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f4c75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v8"/><path d="M7 11h10"/><path d="M9 11v6a3 3 0 0 0 6 0v-6"/><path d="M5 11h14"/></svg></div>
+        <div class="name">Paint</div><div class="count">218 products</div>
+      </a>
+      <a href="shop.html?category=electrical" class="category-card reveal reveal-d2">
+        <div class="icon" style="background:#fff0e8;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b84a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div>
+        <div class="name">Electrical</div><div class="count">552 products</div>
+      </a>
+      <a href="shop.html?category=plumbing" class="category-card reveal reveal-d3">
+        <div class="icon" style="background:#eaf7f1;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a6b45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h8"/><path d="M11 12c0-3 2-5 5-5h5"/><path d="M16 7v10"/><path d="M21 17h-5"/><path d="M9 12a3 3 0 1 1-6 0"/></svg></div>
+        <div class="name">Plumbing</div><div class="count">391 products</div>
+      </a>
+      <a href="shop.html?category=tiles" class="category-card reveal reveal-d4">
+        <div class="icon" style="background:#f1efff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4c3db2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4z"/><path d="M14 4h6v6h-6z"/><path d="M4 14h6v6H4z"/><path d="M14 14h6v6h-6z"/></svg></div>
+        <div class="name">Tiles</div><div class="count">760 products</div>
+      </a>
+      <a href="shop.html?category=tools" class="category-card reveal reveal-d5">
+        <div class="icon" style="background:#f5f5f5;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6.4 6.4 1.4 1.4 6.4-6.4a4 4 0 0 0 5.4-5.4l3.9-3.9-1.4-1.4z"/></svg></div>
+        <div class="name">Power Tools</div><div class="count">126 products</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:white;">
+  <div class="container">
+    <div class="flex items-end justify-between mb-12 gap-6 flex-wrap reveal">
+      <div>
+        <p class="eyebrow">Procurement Ready</p>
+        <h2 class="section-title">Common site materials, clearly priced.</h2>
+      </div>
+      <a href="shop.html" class="btn btn-outline">View All Products</a>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<section class="section market-section" id="material-market">
+  <div class="container">
+    <div class="market-shell">
+      <div class="market-brief reveal-left">
+        <p class="eyebrow">MODIT Market</p>
+        <h2 class="section-title">Today's material market, explained simply.</h2>
+        <p>Check today’s rate, tomorrow’s AI estimate and yesterday’s forecast in a format that purchase teams can understand quickly.</p>
+        <div class="market-brief-points">
+          <div><strong>Today</strong><span>Current MODIT planning rate</span></div>
+          <div><strong>Tomorrow</strong><span>AI estimate for next buying day</span></div>
+          <div><strong>Previous AI</strong><span>Yesterday’s forecast for today</span></div>
+        </div>
+        <a href="shop.html" class="btn btn-dark">View Market Products</a>
+      </div>
+      <div class="market-board reveal-right">
+        <div class="market-board-head">
+          <div>
+            <span>Live procurement board</span>
+            <strong>Sponsored materials</strong>
+            <div class="market-board-legend">
+              <span>Today</span>
+              <span>Tomorrow AI</span>
+              <span>Previous AI</span>
+            </div>
+          </div>
+          <small>Updated 01 Jul 2026, 09:00 IST</small>
+        </div>
+        <div class="market-signals-grid" id="market-signals-grid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ai-section" id="modit-ai" style="position:relative;">
+  <div class="container ai-grid">
+    <div class="reveal-left">
+      <p class="eyebrow" style="color:var(--primary);">MODIT AI</p>
+      <h2 class="section-title">Ask before you buy.</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.68);margin-top:18px;">Use plain language to estimate materials, check market movement, compare products or prepare a bulk inquiry. No technical knowledge required.</p>
+      <div class="ai-example-list">
+        <span>Estimate cement for a slab</span>
+        <span>Check tomorrow's market signal</span>
+        <span>Prepare a contractor quote</span>
+      </div>
+    </div>
+    <div class="ai-features reveal-right">
+      <div class="ai-feature"><div class="icon">01</div><h4>Estimate Quantity</h4><p>Convert area, room or slab details into a material list.</p></div>
+      <div class="ai-feature"><div class="icon">02</div><h4>Understand Rates</h4><p>Read market movement in simple procurement language.</p></div>
+      <div class="ai-feature"><div class="icon">03</div><h4>Shortlist Products</h4><p>Compare brands, units and delivery options before adding to cart.</p></div>
+      <div class="ai-feature"><div class="icon">04</div><h4>Prepare Quotes</h4><p>Capture bulk order details for MODIT sales follow-up.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contractors">
+  <div class="container app-grid">
+    <div class="reveal-left">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=85" alt="Contractor checking construction plans" style="border-radius:var(--radius-2xl);aspect-ratio:4/3;object-fit:cover;width:100%;">
+    </div>
+    <div class="reveal-right">
+      <p class="eyebrow">For Contractors</p>
+      <h2 class="section-title">A dependable buying desk for every site.</h2>
+      <p class="section-subtitle" style="margin-top:18px;">For repeat orders, MODIT supports negotiated pricing, approved credit, clean invoices and a relationship manager who understands job-site urgency.</p>
+      <div class="features-grid" style="margin-top:28px;grid-template-columns:1fr 1fr;">
+        <div class="feature-card"><h3>Approved Credit</h3><p>Payment terms for qualified contractor accounts.</p></div>
+        <div class="feature-card"><h3>Project Quotes</h3><p>One quote across cement, paint, electricals and plumbing.</p></div>
+        <div class="feature-card"><h3>Site Dispatch</h3><p>Delivery coordination by location, time slot and unloading need.</p></div>
+        <div class="feature-card"><h3>Tax Ready</h3><p>GST invoices, order records and repeat purchase history.</p></div>
+      </div>
+      <a href="contact.html" class="btn btn-primary" style="margin-top:28px;">Talk to MODIT Business</a>
+    </div>
+  </div>
+</section>
+
+<section class="section app-section">
+  <div class="container app-grid">
+    <div class="reveal-left">
+      <p class="eyebrow" style="color:rgba(255,255,255,.55);">On the go</p>
+      <h2 class="section-title">Repeat orders without repeated phone calls.</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.64);margin-top:18px;">Save frequent materials, approve quotes and track deliveries from the same account when the mobile app is ready.</p>
+      <div class="app-stores">
+        <button class="app-store-btn">App Store</button>
+        <button class="app-store-btn">Google Play</button>
+      </div>
+    </div>
+    <div class="app-phones reveal-right">
+      <div class="app-phone"><img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=500&q=85" alt="Mobile commerce app preview"></div>
+      <div class="app-phone"><img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=500&q=85" alt="Mobile dashboard preview"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-logo" style="color:white;">
+          <img class="modit-logo-mark" src="images/modit-logo-mark.svg" alt="MODIT logo">
+          <span>MODIT</span>
+        </a>
+        <p>Everything for Building. Delivered in Hours. India's premium construction commerce platform.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="#">Careers</a><a href="#">Press</a></div>
+      <div class="footer-col"><h4>Products</h4><a href="shop.html?category=cement">Cement</a><a href="shop.html?category=paint">Paint</a><a href="shop.html?category=electrical">Electrical</a><a href="shop.html?category=plumbing">Plumbing</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#">Track Order</a><a href="#">Returns</a><a href="#">Help Center</a><a href="#">Warranty</a></div>
+      <div class="footer-col"><h4>Business</h4><a href="#contractors">Contractors</a><a href="#contractors">Bulk Orders</a><a href="#">Vendor Registration</a><a href="#">Corporate Orders</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MODIT. All rights reserved.</p>
+      <div class="footer-social"><a href="#">IG</a><a href="#">X</a><a href="#">in</a><a href="#">YT</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bottom-nav">
+  <div class="mobile-bottom-nav-inner">
+    <a href="index.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Home</span></a>
+    <a href="shop.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg><span>Shop</span></a>
+    <a href="cart.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Cart</span></a>
+    <a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account</span></a>
+  </div>
+</div>
+
+<script src="js/app.js?v=20260701-market4"></script>
+</body>
+</html>
