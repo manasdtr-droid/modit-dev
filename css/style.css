@@ -550,6 +550,51 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 0.95rem;
 }
 
+/* Shop filters */
+.shop-filter-summary,
+.shop-recent-searches {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: #fff;
+}
+.shop-summary-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.shop-summary-empty {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+.shop-summary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.shop-summary-chips span,
+.shop-recent-chip {
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.shop-recent-chip {
+  cursor: pointer;
+  transition: var(--transition);
+}
+.shop-recent-chip:hover {
+  background: #fff7db;
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+}
+
 /* Modit AI widget */
 .modit-ai-widget { position: fixed; right: 22px; bottom: 22px; z-index: 10000; }
 .modit-ai-launcher {

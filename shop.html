@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop - MODIT Construction Materials</title>
 <meta name="description" content="Browse India's largest selection of premium construction materials. Cement, paint, tiles, plumbing, electricals and more.">
-<link rel="stylesheet" href="css/style.css?v=20260701-market4">
+<link rel="stylesheet" href="css/style.css?v=20260701-market6">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -55,7 +55,7 @@
   <div class="container">
     <div class="breadcrumb justify-center reveal" style="color:oklch(0 0 0 / 0.5);"><a href="index.html" style="color:oklch(0 0 0 / 0.6);">Home</a><span class="sep" style="color:oklch(0 0 0 / 0.2);">/</span><span>Products</span></div>
     <h1 class="reveal reveal-d1">All Products</h1>
-    <p class="reveal reveal-d2" style="color:oklch(0 0 0 / 0.6);">Browse 20,000+ premium construction materials from top brands</p>
+    <p class="reveal reveal-d2" style="color:oklch(0 0 0 / 0.6);">Browse 20,000+ premium construction materials from top brands. Pilot coverage is live across Noida pincodes, with Bihar next.</p>
   </div>
 </section>
 
@@ -112,6 +112,8 @@
             </select>
           </div>
         </div>
+        <div class="shop-filter-summary reveal" id="shop-filter-summary"></div>
+        <div class="shop-recent-searches reveal" id="shop-recent-searches"></div>
         <div class="products-grid" id="shop-products"></div>
       </div>
     </div>
@@ -156,7 +158,7 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260701-market4"></script>
+<script src="js/app.js?v=20260701-market6"></script>
 <script>
 function applyFilters() {
   const cat = document.querySelector('input[name="category"]:checked')?.value || 'all';
@@ -195,6 +197,8 @@ function applyFilters() {
     });
   }
   document.getElementById('results-count').textContent = `Showing ${products.length} product${products.length !== 1 ? 's' : ''}`;
+  renderFilterSummary({ cat, selectedBrands, priceRange, sort, search, count: products.length });
+  if (search.trim()) saveRecentSearch(search.trim());
 }
 
 function resetFilters() {
@@ -202,7 +206,53 @@ function resetFilters() {
   document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
   document.getElementById('shop-search').value = '';
   document.getElementById('sort-select').value = 'default';
+  localStorage.removeItem('modit_recent_searches');
   applyFilters();
+}
+
+function renderFilterSummary(state) {
+  const summary = document.getElementById('shop-filter-summary');
+  const recent = document.getElementById('shop-recent-searches');
+  if (!summary || !recent) return;
+
+  const chips = [];
+  if (state.cat !== 'all') chips.push(state.cat);
+  state.selectedBrands.forEach(brand => chips.push(brand));
+  if (state.priceRange !== 'all') chips.push(state.priceRange.replace('-', ' to ').replace('+', ' and above'));
+  if (state.sort !== 'default') chips.push(state.sort);
+  if (state.search.trim()) chips.push(`search: ${state.search.trim()}`);
+
+  summary.innerHTML = chips.length
+    ? `<div class="shop-summary-label">Active filters</div><div class="shop-summary-chips">${chips.map(chip => `<span>${chip}</span>`).join('')}</div>`
+    : `<div class="shop-summary-label">Active filters</div><div class="shop-summary-empty">No filters applied</div>`;
+
+  const recentSearches = JSON.parse(localStorage.getItem('modit_recent_searches') || '[]').slice(0, 4);
+  recent.innerHTML = recentSearches.length
+    ? `<div class="shop-summary-label">Recent searches</div><div class="shop-summary-chips">${recentSearches.map(item => `<button type="button" class="shop-recent-chip" data-search="${item.replace(/"/g, '&quot;')}">${item}</button>`).join('')}</div>`
+    : '';
+
+  recent.querySelectorAll('.shop-recent-chip').forEach(button => {
+    button.addEventListener('click', () => {
+      const searchInput = document.getElementById('shop-search');
+      if (!searchInput) return;
+      searchInput.value = button.dataset.search || '';
+      applyFilters();
+    });
+  });
+}
+
+function saveRecentSearch(query) {
+  const current = JSON.parse(localStorage.getItem('modit_recent_searches') || '[]');
+  const next = [query, ...current.filter(item => item.toLowerCase() !== query.toLowerCase())].slice(0, 6);
+  localStorage.setItem('modit_recent_searches', JSON.stringify(next));
+  renderFilterSummary({
+    cat: document.querySelector('input[name="category"]:checked')?.value || 'all',
+    selectedBrands: [...document.querySelectorAll('input[type="checkbox"]:checked')].map(c => c.value),
+    priceRange: document.querySelector('input[name="price"]:checked')?.value || 'all',
+    sort: document.getElementById('sort-select')?.value || 'default',
+    search: query,
+    count: parseInt(document.getElementById('results-count').textContent.replace(/\D/g, ''), 10) || 0
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
