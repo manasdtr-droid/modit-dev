@@ -486,6 +486,24 @@ const MODIT = {
       const cement = this.getMarketProducts()[0]?.marketSignal;
       return cement ? `Current sponsored market signal: ${cement.label} is ${this.formatPrice(cement.todayPrice)} today, AI tomorrow is ${this.formatPrice(cement.aiTomorrowPrice)}, confidence ${cement.confidence}%. This is a planning estimate, not a guaranteed selling price.` : 'Market signals are being prepared for sponsored products first.';
     }
+    if (q.includes('paint') || q.includes('primer') || q.includes('putty')) {
+      return 'Construction estimator mode: for paint, share wall area or room dimensions, ceiling area, number of coats, primer/putty requirement and surface condition. I will estimate litres using coverage per litre plus 5-10% wastage.';
+    }
+    if (q.includes('tile') || q.includes('flooring')) {
+      return 'Construction estimator mode: for tiles, share floor or wall area, tile size, layout pattern and wastage allowance. Straight layouts usually need 5-10% extra; diagonal or complex cuts need more.';
+    }
+    if (q.includes('plumbing') || q.includes('pipe') || q.includes('cpvc') || q.includes('upvc')) {
+      return 'Procurement assistant mode: for plumbing, confirm pipe material, diameter, pressure rating, hot/cold water use, fittings list, brand and site layout before ordering.';
+    }
+    if (q.includes('gst') || q.includes('invoice') || q.includes('billing')) {
+      return 'Procurement assistant mode: for GST billing, collect legal buyer name, GSTIN, billing address, delivery address, PO reference if any, and separate material value, GST, freight and payment status.';
+    }
+    if (q.includes('delivery') || q.includes('dispatch') || q.includes('unloading') || q.includes('pincode')) {
+      return 'Procurement assistant mode: for site delivery, confirm pincode, access road width, unloading floor, labour availability, preferred time slot, vehicle restrictions and partial delivery preference.';
+    }
+    if (q.includes('steel') || q.includes('tmt') || q.includes('rebar') || q.includes('saria')) {
+      return 'Construction estimator mode: steel quantities should come from structural drawings or a bar bending schedule. Share grade, diameters and project type; final quantities must be validated by a structural engineer.';
+    }
     if (q.includes('estimate') || q.includes('estimator') || q.includes('cement') || q.includes('slab') || q.includes('concrete') || q.includes('sq ft')) {
       return 'Construction estimator mode: share built-up area, slab thickness, room count, floor count and city. For a 2000 sq ft residential scope, I would first estimate cement/concrete, paint area, tile area, wire length and plumbing points, then convert it into a purchase list for confirmation.';
     }

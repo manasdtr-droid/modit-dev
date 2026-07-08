@@ -11,6 +11,10 @@ function formatRupee(value) {
   return `Rs ${Math.round(value).toLocaleString('en-IN')}`;
 }
 
+function normalizeText(value) {
+  return String(value || '').toLowerCase();
+}
+
 function getMarketData() {
   const market = readJson(path.join(rootDir, 'data', 'market-signals.json'));
   return {
@@ -22,11 +26,81 @@ function getMarketData() {
   };
 }
 
+function getKnowledgeBank() {
+  return readJson(path.join(rootDir, 'data', 'ai-knowledge-bank.json'));
+}
+
+function countKeywordMatches(query, keywords = []) {
+  return keywords.reduce((score, keyword) => {
+    const normalized = normalizeText(keyword);
+    return score + (normalized && query.includes(normalized) ? 1 : 0);
+  }, 0);
+}
+
+function findBestMatch(query, entries = []) {
+  return entries
+    .map(entry => ({ entry, score: countKeywordMatches(query, entry.keywords) }))
+    .filter(match => match.score > 0)
+    .sort((a, b) => b.score - a.score)[0]?.entry || null;
+}
+
+function isEstimatorQuery(query) {
+  return [
+    'estimate',
+    'estimator',
+    'calculate',
+    'quantity',
+    'how much',
+    'sq ft',
+    'square feet',
+    'area',
+    'volume',
+    'material required'
+  ].some(keyword => query.includes(keyword));
+}
+
+function getKnowledgeReply(message) {
+  const q = normalizeText(message);
+  const bank = getKnowledgeBank();
+  const estimatorMode = isEstimatorQuery(q);
+  const material = findBestMatch(q, bank.materialGuides);
+  const estimationRule = findBestMatch(q, bank.estimationRules);
+  const procurementTopic = findBestMatch(q, bank.procurementTopics);
+
+  if (estimationRule) {
+    return `${bank.agents.estimator.name}: ${estimationRule.reply} ${bank.safetyAndDisclaimers[1]}`;
+  }
+
+  if (material) {
+    const baseReply = estimatorMode ? material.estimatorReply : material.procurementReply;
+    const questions = material.questions?.length
+      ? ` Key inputs needed: ${material.questions.join(' ')}`
+      : '';
+    const agent = estimatorMode ? bank.agents.estimator.name : bank.agents.procurement.name;
+    return `${agent}: ${baseReply}${questions}`;
+  }
+
+  if (procurementTopic) {
+    return `${bank.agents.procurement.name}: ${procurementTopic.reply}`;
+  }
+
+  if (q.includes('procurement assistant') || q.includes('procurement agent')) {
+    return `${bank.agents.procurement.name}: ${bank.agents.procurement.defaultReply}`;
+  }
+
+  if (q.includes('construction estimator') || q.includes('estimator agent')) {
+    return `${bank.agents.estimator.name}: ${bank.agents.estimator.defaultReply}`;
+  }
+
+  return null;
+}
+
 function getAiReply(message, cartCount = 0) {
   const q = String(message || '').toLowerCase();
   const market = getMarketData();
   const cement = market.signals.find(signal => signal.materialKey === 'cement_43_grade');
   const copper = market.signals.find(signal => signal.materialKey === 'copper_wire_1_5sqmm');
+  const knowledgeReply = getKnowledgeReply(message);
 
   if (!q.trim()) {
     return 'Send a material, quantity, site use case, or market question and I will help you prepare the next action.';
@@ -46,12 +120,15 @@ function getAiReply(message, cartCount = 0) {
   if (q.includes('cart') || q.includes('order')) {
     return `Your browser cart currently reports ${cartCount} item(s). I can help decide whether to add sponsored market SKUs or prepare a contractor quote.`;
   }
-  return 'I can help with product discovery, market signals, cart guidance, and bulk inquiry preparation. For production, this endpoint can be connected to a secure LLM backend with catalog retrieval and human handoff.';
+  if (knowledgeReply) return knowledgeReply;
+  return 'I can help with product discovery, market signals, estimation, cart guidance, delivery planning, GST billing, and bulk inquiry preparation. Share a material or site scope to get a more specific answer.';
 }
 
 module.exports = {
   formatRupee,
   getAiReply,
+  getKnowledgeBank,
+  getKnowledgeReply,
   getMarketData,
   rootDir
 };

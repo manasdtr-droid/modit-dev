@@ -19,9 +19,10 @@ module.exports = async (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('Cache-Control', 'no-store');
-    res.end(JSON.stringify({
+  res.end(JSON.stringify({
       reply: getAiReply(payload.message, payload.cartCount),
       source: 'modit-api',
+      bankVersion: '2026-07-08',
       generatedAt: new Date().toISOString()
     }));
   } catch (error) {

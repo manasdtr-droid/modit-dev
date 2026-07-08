@@ -1,0 +1,126 @@
+{
+  "version": "2026-07-08",
+  "agents": {
+    "procurement": {
+      "name": "AI Procurement Assistant",
+      "purpose": "Help buyers compare materials, understand buying signals, prepare carts, and capture bulk quote requirements.",
+      "defaultReply": "I can help with material selection, brand comparison, market signals, GST-ready ordering, delivery planning, and bulk quote preparation. Share the material, quantity, site location, and urgency."
+    },
+    "estimator": {
+      "name": "AI Construction Estimator",
+      "purpose": "Convert project scope into approximate material quantities and surface assumptions before purchase.",
+      "defaultReply": "I can estimate material quantities when you share area, thickness, room count, floor count, finish type, and site location. Estimates should be reviewed by your engineer before final procurement."
+    }
+  },
+  "procurementTopics": [
+    {
+      "id": "bulk_quote",
+      "keywords": ["bulk", "quote", "contractor", "project rate", "tender", "large order"],
+      "reply": "For a bulk quote, capture: material list, brand preference, quantity, unit, delivery pincode, GST number, unloading constraints, required delivery date, and payment terms. MODIT should confirm stock, final rate, freight, tax, and dispatch slot before order confirmation."
+    },
+    {
+      "id": "gst_invoice",
+      "keywords": ["gst", "invoice", "billing", "tax", "company bill"],
+      "reply": "For GST-ready procurement, collect buyer legal name, GSTIN, billing address, delivery address, PO reference if any, and material HSN/category. The invoice should separate material value, GST, delivery or handling charges, and payment status."
+    },
+    {
+      "id": "delivery_planning",
+      "keywords": ["delivery", "dispatch", "site", "unloading", "truck", "pincode", "noida", "bihar"],
+      "reply": "For site delivery, confirm delivery pincode, access road width, unloading floor, labour availability, preferred time slot, vehicle restrictions, and whether partial delivery is acceptable. Heavy materials should be scheduled with unloading readiness."
+    },
+    {
+      "id": "brand_comparison",
+      "keywords": ["compare", "brand", "which brand", "best", "alternative"],
+      "reply": "For brand comparison, evaluate availability, authorized supply, warranty, price per unit, delivery speed, after-sales support, and contractor familiarity. For critical structural items, prefer trusted authorized brands over the lowest quote."
+    },
+    {
+      "id": "returns_damage",
+      "keywords": ["return", "damage", "broken", "replacement", "wrong item"],
+      "reply": "For returns or damage, capture order ID, product photos, delivery time, item count received, and whether packaging was intact. Fragile items like tiles and sanitaryware should be inspected at unloading."
+    },
+    {
+      "id": "payment_terms",
+      "keywords": ["payment", "credit", "cod", "advance", "terms", "net 30"],
+      "reply": "Payment terms depend on buyer profile and order size. New buyers usually use advance or COD. Approved contractors may receive credit limits after KYC, GST verification, order history, and risk review."
+    }
+  ],
+  "materialGuides": [
+    {
+      "material": "cement",
+      "keywords": ["cement", "opc", "ppc", "concrete", "slab", "beam", "column", "mortar"],
+      "procurementReply": "For cement procurement, confirm grade/type, brand, manufacturing date, bag weight, storage condition, and delivery timing. For structural RCC, confirm engineer-specified grade before substituting OPC/PPC.",
+      "estimatorReply": "For cement estimation, share concrete volume or slab area and thickness. Approximate RCC mix planning often starts from concrete volume, mix ratio/design mix, wastage, and bag size. Engineer approval is required before final structural use.",
+      "questions": ["What is the slab/column/beam volume or area and thickness?", "Which concrete grade or mix design is specified?", "How many floors and what wastage allowance should be used?"]
+    },
+    {
+      "material": "steel",
+      "keywords": ["steel", "tmt", "rebar", "saria", "rod", "reinforcement"],
+      "procurementReply": "For TMT steel, confirm grade such as Fe500/Fe550, diameter mix, brand, test certificate availability, bendability, bundle weight, and site unloading plan.",
+      "estimatorReply": "For steel estimation, use structural drawings and bar bending schedule. If drawings are unavailable, only a rough kg per sq ft benchmark can be discussed, and it must be validated by a structural engineer.",
+      "questions": ["Do you have a bar bending schedule?", "Which diameters are needed?", "Is this residential, commercial, footing, slab, beam, or column work?"]
+    },
+    {
+      "material": "paint",
+      "keywords": ["paint", "primer", "putty", "emulsion", "distemper", "texture"],
+      "procurementReply": "For paint procurement, confirm interior/exterior use, surface condition, primer/putty requirement, finish level, brand, colour, and number of coats.",
+      "estimatorReply": "For paint estimation, calculate wall and ceiling area, subtract major openings, decide primer and top-coat count, then divide by product coverage per litre. Coverage varies by surface and product.",
+      "questions": ["What is wall area or room size?", "Interior or exterior?", "How many coats and is putty/primer required?"]
+    },
+    {
+      "material": "tiles",
+      "keywords": ["tile", "tiles", "vitrified", "ceramic", "flooring", "wall tile"],
+      "procurementReply": "For tiles, confirm size, finish, application area, shade/batch consistency, anti-skid requirement, adhesive/grout needs, and extra percentage for cutting and breakage.",
+      "estimatorReply": "For tile estimation, use area plus wastage. Typical wastage ranges from 5% to 10% for simple layouts and higher for diagonal patterns or many cuts.",
+      "questions": ["What is the floor/wall area?", "Tile size and layout pattern?", "How much wastage should be allowed?"]
+    },
+    {
+      "material": "electrical",
+      "keywords": ["wire", "wiring", "electrical", "switch", "mcb", "copper", "cable", "conduit"],
+      "procurementReply": "For electrical procurement, confirm wire size, copper/aluminium, insulation grade, brand, coil length, load type, MCB rating, conduit requirement, and ISI compliance.",
+      "estimatorReply": "For wiring estimation, count rooms, switch points, appliance points, DB location, conduit routes, and approximate run lengths. Final sizing should be validated by a licensed electrician.",
+      "questions": ["How many rooms and electrical points?", "What loads are planned?", "Where is the distribution board located?"]
+    },
+    {
+      "material": "plumbing",
+      "keywords": ["pipe", "plumbing", "cpvc", "upvc", "pvc", "bath fitting", "sanitary", "water line"],
+      "procurementReply": "For plumbing, confirm pipe material, diameter, pressure rating, hot/cold water use, fittings list, brand, and site drawings before ordering.",
+      "estimatorReply": "For plumbing estimation, count bathrooms, kitchen points, inlet/outlet runs, pipe diameters, elbows, tees, valves, traps, and overhead tank connections.",
+      "questions": ["How many bathrooms and kitchens?", "Hot and cold water or only cold?", "Do you have a plumbing layout?"]
+    },
+    {
+      "material": "waterproofing",
+      "keywords": ["waterproof", "waterproofing", "leakage", "terrace", "bathroom waterproof", "dr fixit"],
+      "procurementReply": "For waterproofing, confirm application area, substrate condition, leakage severity, product system, primer requirement, mesh/tape requirement, and curing time.",
+      "estimatorReply": "For waterproofing estimation, use surface area plus product coverage per coat. Include primer, membrane/coating, corner treatment, and wastage.",
+      "questions": ["Which area needs waterproofing?", "What is the surface area?", "Is there active leakage or preventive treatment?"]
+    }
+  ],
+  "estimationRules": [
+    {
+      "id": "paint_area",
+      "keywords": ["paint estimate", "wall paint", "paint quantity", "how much paint"],
+      "reply": "Paint estimate method: wall area plus ceiling area minus major openings, multiplied by number of coats, divided by product coverage per litre. Add 5-10% wastage depending on surface roughness."
+    },
+    {
+      "id": "tile_area",
+      "keywords": ["tile estimate", "tiles quantity", "floor tiles", "wall tiles"],
+      "reply": "Tile estimate method: measured area divided by tile coverage, then add wastage. Use 5-10% for straight layouts and 10-15% for diagonal or complex cutting layouts."
+    },
+    {
+      "id": "concrete_volume",
+      "keywords": ["concrete volume", "slab estimate", "rcc estimate", "concrete quantity"],
+      "reply": "Concrete estimate method: length x width x thickness gives wet concrete volume. Convert units consistently, add wastage, and use engineer-approved mix design for cement, sand, aggregate, and admixture."
+    },
+    {
+      "id": "wire_length",
+      "keywords": ["wire estimate", "wire length", "electrical estimate"],
+      "reply": "Wire estimate method: count circuits and points, map route length from DB to each area, include neutral/earth where required, add vertical drops and 10-15% allowance. Validate wire size against load."
+    }
+  ],
+  "safetyAndDisclaimers": [
+    "AI estimates are planning aids, not structural or electrical certification.",
+    "Structural material quantities should be validated by a qualified engineer.",
+    "Electrical sizing should be validated by a licensed electrician.",
+    "Final prices, stock, taxes, and delivery slots must be confirmed before billing."
+  ]
+}
