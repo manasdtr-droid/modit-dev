@@ -3,9 +3,9 @@
   <desc id="desc">A bold monogram M shaped like a modular building frame with a delivery arrow foundation.</desc>
   <defs>
     <linearGradient id="modit-amber" x1="22" y1="16" x2="106" y2="112" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FFE17A"/>
-      <stop offset="0.48" stop-color="#FFC107"/>
-      <stop offset="1" stop-color="#F39C12"/>
+      <stop offset="0" stop-color="#C9A7FF"/>
+      <stop offset="0.48" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#5B21B6"/>
     </linearGradient>
     <linearGradient id="modit-ink" x1="32" y1="26" x2="96" y2="104" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#222"/>
@@ -18,7 +18,7 @@
   <rect width="128" height="128" rx="30" fill="url(#modit-ink)"/>
   <path d="M19 99H83C90.8 99 97.1 92.7 97.1 84.9V36.5L83.2 55.7V83.2H71.3V72.1L64.1 82.1L56.7 72.1V83.2H44.8V55.6L31 36.5V88H19V99Z" fill="url(#modit-amber)" filter="url(#soft-shadow)"/>
   <path d="M30.8 31H45.4L64.2 57.5L83.1 31H97.3V84.6C97.3 92.6 90.9 99 82.9 99H73.2V86.2H81.4C83.6 86.2 85.3 84.5 85.3 82.3V55.2L68.6 78.5H59.5L42.8 55.3V99H30.8V31Z" fill="url(#modit-amber)"/>
-  <path d="M83.6 99H110L99.9 112H73.5L83.6 99Z" fill="#FFC107"/>
-  <path d="M93.7 86L110 99L93.7 112V103.1H80.3L90.4 90.1H93.7V86Z" fill="#FFE17A"/>
-  <path d="M45.4 31L64.2 57.5L83.1 31H97.3L68.6 78.5H59.5L30.8 31H45.4Z" fill="#FFE88F" opacity="0.45"/>
+  <path d="M83.6 99H110L99.9 112H73.5L83.6 99Z" fill="#7C3AED"/>
+  <path d="M93.7 86L110 99L93.7 112V103.1H80.3L90.4 90.1H93.7V86Z" fill="#C4B5FD"/>
+  <path d="M45.4 31L64.2 57.5L83.1 31H97.3L68.6 78.5H59.5L30.8 31H45.4Z" fill="#DDD6FE" opacity="0.45"/>
 </svg>

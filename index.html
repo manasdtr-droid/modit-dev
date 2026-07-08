@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MODIT - Everything for Building. Delivered in Hours.</title>
 <meta name="description" content="India's quick-commerce platform for construction materials, hardware, plumbing, electricals, tiles and power tools.">
-<link rel="stylesheet" href="css/style.css?v=20260701-market6">
+<link rel="stylesheet" href="css/style.css?v=20260708-purple-mobile1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -145,11 +145,11 @@
       <div class="market-brief reveal-left">
         <p class="eyebrow">MODIT Market</p>
         <h2 class="section-title">Today's material market, explained simply.</h2>
-        <p>Check today’s rate, tomorrow’s AI estimate and yesterday’s forecast in a format that purchase teams can understand quickly.</p>
+        <p>Check today's rate, tomorrow's AI estimate and yesterday's forecast in a format that purchase teams can understand quickly.</p>
         <div class="market-brief-points">
           <div><strong>Today</strong><span>Current MODIT planning rate</span></div>
           <div><strong>Tomorrow</strong><span>AI estimate for next buying day</span></div>
-          <div><strong>Previous AI</strong><span>Yesterday’s forecast for today</span></div>
+          <div><strong>Previous AI</strong><span>Yesterday's forecast for today</span></div>
         </div>
         <a href="shop.html" class="btn btn-dark">View Market Products</a>
       </div>
@@ -173,22 +173,35 @@
 </section>
 
 <section class="section ai-section" id="modit-ai" style="position:relative;">
-  <div class="container ai-grid">
-    <div class="reveal-left">
-      <p class="eyebrow" style="color:var(--primary);">MODIT AI</p>
-      <h2 class="section-title">Ask before you buy.</h2>
-      <p class="section-subtitle" style="color:rgba(255,255,255,.68);margin-top:18px;">Use plain language to estimate materials, check market movement, compare products or prepare a bulk inquiry. No technical knowledge required.</p>
-      <div class="ai-example-list">
-        <span>Estimate cement for a slab</span>
-        <span>Check tomorrow's market signal</span>
-        <span>Prepare a contractor quote</span>
-      </div>
+  <div class="container">
+    <div class="ai-section-head reveal">
+      <p class="eyebrow" style="color:var(--primary);">MODIT AI Agents</p>
+      <h2 class="section-title">Two focused agents for construction buying.</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.70);margin-top:18px;">The AI layer is now presented clearly: one agent helps purchase teams buy better, the other converts construction scope into quantities.</p>
     </div>
-    <div class="ai-features reveal-right">
-      <div class="ai-feature"><div class="icon">01</div><h4>Estimate Quantity</h4><p>Convert area, room or slab details into a material list.</p></div>
-      <div class="ai-feature"><div class="icon">02</div><h4>Understand Rates</h4><p>Read market movement in simple procurement language.</p></div>
-      <div class="ai-feature"><div class="icon">03</div><h4>Shortlist Products</h4><p>Compare brands, units and delivery options before adding to cart.</p></div>
-      <div class="ai-feature"><div class="icon">04</div><h4>Prepare Quotes</h4><p>Capture bulk order details for MODIT sales follow-up.</p></div>
+    <div class="ai-agent-grid">
+      <article class="ai-agent-card reveal-left">
+        <div class="ai-agent-kicker">Agent 01</div>
+        <h3>AI Procurement Assistant</h3>
+        <p>Handles product discovery, market signals, bulk quote preparation, GST-aware ordering and vendor comparison.</p>
+        <ul>
+          <li>Compare brands, rates and delivery timelines</li>
+          <li>Convert material lists into purchase-ready carts</li>
+          <li>Prepare contractor quote requirements</li>
+        </ul>
+        <button type="button" class="btn btn-primary ai-open-agent" data-agent-prompt="Prepare a bulk procurement quote for cement, wires and plumbing materials">Open Procurement Agent</button>
+      </article>
+      <article class="ai-agent-card estimator reveal-right">
+        <div class="ai-agent-kicker">Agent 02</div>
+        <h3>AI Construction Estimator</h3>
+        <p>Turns site scope into material estimates for slabs, rooms, painting, tiling, electrical and plumbing work.</p>
+        <ul>
+          <li>Estimate cement, sand and aggregate needs</li>
+          <li>Calculate paint, tile and wire quantities</li>
+          <li>Flag assumptions before purchase confirmation</li>
+        </ul>
+        <button type="button" class="btn btn-primary ai-open-agent" data-agent-prompt="Estimate construction materials for a 2000 sq ft residential project">Open Estimator Agent</button>
+      </article>
     </div>
   </div>
 </section>
@@ -262,6 +275,6 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260701-market6"></script>
+<script src="js/app.js?v=20260708-purple-mobile1"></script>
 </body>
 </html>

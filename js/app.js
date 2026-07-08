@@ -95,7 +95,7 @@ const MODIT = {
     if (existing) existing.remove();
     const toast = document.createElement('div');
     toast.className = 'modit-toast';
-    toast.innerHTML = `<div class="flex items-center gap-3 px-6 py-4 bg-[#111] text-white rounded-2xl shadow-2xl text-sm font-medium"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${msg}</div>`;
+    toast.innerHTML = `<div class="flex items-center gap-3 px-6 py-4 bg-[#111] text-white rounded-2xl shadow-2xl text-sm font-medium"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${msg}</div>`;
     document.body.appendChild(toast);
     requestAnimationFrame(() => toast.classList.add('show'));
     setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 2500);
@@ -348,18 +348,18 @@ const MODIT = {
           <a href="product-detail.html?id=${p.id}">
             <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
           </a>
-          ${p.badge ? `<span class="absolute top-3 left-3 px-3 py-1 bg-[#FFC107] text-[#111] text-xs font-bold rounded-lg">${p.badge}</span>` : ''}
+          ${p.badge ? `<span class="absolute top-3 left-3 px-3 py-1 bg-[#7C3AED] text-white text-xs font-bold rounded-lg">${p.badge}</span>` : ''}
           <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-sm text-xs font-semibold text-gray-700 rounded-lg shadow-sm">${p.delivery}</span>
           <button class="absolute top-3 right-12 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:scale-110 shadow-sm" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
         </div>
         <div class="p-4">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-xs font-semibold text-[#FFC107] bg-[#FFC107]/10 px-2 py-0.5 rounded-md">${p.brand}</span>
+            <span class="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2 py-0.5 rounded-md">${p.brand}</span>
             <span class="text-xs text-gray-400">${p.unit}</span>
           </div>
-          <a href="product-detail.html?id=${p.id}"><h3 class="font-semibold text-[#121212] leading-tight mb-2 group-hover:text-[#FFC107] transition-colors line-clamp-2">${p.name}</h3></a>
+          <a href="product-detail.html?id=${p.id}"><h3 class="font-semibold text-[#121212] leading-tight mb-2 group-hover:text-[#7C3AED] transition-colors line-clamp-2">${p.name}</h3></a>
           <div class="flex items-center gap-1 mb-2">
-            <svg class="w-3.5 h-3.5 text-[#FFC107]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-3.5 h-3.5 text-[#7C3AED]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <span class="text-sm font-semibold text-gray-800">${p.rating}</span>
             <span class="text-xs text-gray-400">(${p.reviews.toLocaleString('en-IN')})</span>
           </div>
@@ -373,7 +373,7 @@ const MODIT = {
               <span class="text-lg font-bold text-[#121212]">${this.formatPrice(p.price)}</span>
               ${p.originalPrice ? `<span class="text-sm text-gray-400 line-through ml-2">${this.formatPrice(p.originalPrice)}</span>` : ''}
             </div>
-            <button class="add-to-cart-btn w-10 h-10 bg-[#111] text-white rounded-xl flex items-center justify-center hover:bg-[#FFC107] hover:text-[#111] transition-all active:scale-90 shadow-md" data-id="${p.id}" title="Add to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+            <button class="add-to-cart-btn w-10 h-10 bg-[#111] text-white rounded-xl flex items-center justify-center hover:bg-[#7C3AED] transition-all active:scale-90 shadow-md" data-id="${p.id}" title="Add to cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
           </div>
           ${this.marketMini(p.marketSignal)}
           <a href="contact.html" class="bulk-quote-link">Need quantity pricing? Request bulk quote</a>
@@ -441,6 +441,12 @@ const MODIT = {
         await sendQuery(button.dataset.prompt || button.textContent);
       });
     });
+    document.querySelectorAll('.ai-open-agent').forEach(button => {
+      button.addEventListener('click', async () => {
+        setOpen(true);
+        await sendQuery(button.dataset.agentPrompt || button.textContent);
+      });
+    });
   },
 
   appendAiMessage(container, text, role) {
@@ -480,8 +486,8 @@ const MODIT = {
       const cement = this.getMarketProducts()[0]?.marketSignal;
       return cement ? `Current sponsored market signal: ${cement.label} is ${this.formatPrice(cement.todayPrice)} today, AI tomorrow is ${this.formatPrice(cement.aiTomorrowPrice)}, confidence ${cement.confidence}%. This is a planning estimate, not a guaranteed selling price.` : 'Market signals are being prepared for sponsored products first.';
     }
-    if (q.includes('cement') || q.includes('slab') || q.includes('concrete')) {
-      return 'For cement procurement, start with UltraTech Premium Cement or UltraTech PPC. Share area, slab thickness, and delivery location, and I can convert it into a bulk inquiry.';
+    if (q.includes('estimate') || q.includes('estimator') || q.includes('cement') || q.includes('slab') || q.includes('concrete') || q.includes('sq ft')) {
+      return 'Construction estimator mode: share built-up area, slab thickness, room count, floor count and city. For a 2000 sq ft residential scope, I would first estimate cement/concrete, paint area, tile area, wire length and plumbing points, then convert it into a purchase list for confirmation.';
     }
     if (q.includes('wire') || q.includes('electrical') || q.includes('copper')) {
       return 'For electrical work, Polycab 1.5 sq mm wire is available with a copper-linked market signal. Tell me load type, room count, and preferred brand for a better shortlist.';
@@ -499,7 +505,7 @@ const MODIT = {
     const container = document.getElementById('cart-container');
     if (!container) return;
     if (!this.cart.length) {
-      container.innerHTML = `<div class="text-center py-20"><svg class="mx-auto mb-6 text-gray-300" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><h2 class="text-2xl font-bold text-gray-800 mb-2">Your cart is empty</h2><p class="text-gray-500 mb-8">Start shopping to add items</p><a href="shop.html" class="inline-flex items-center gap-2 px-8 py-4 bg-[#111] text-white rounded-2xl font-semibold hover:bg-[#FFC107] hover:text-[#111] transition-all"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Continue Shopping</a></div>`;
+      container.innerHTML = `<div class="text-center py-20"><svg class="mx-auto mb-6 text-gray-300" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><h2 class="text-2xl font-bold text-gray-800 mb-2">Your cart is empty</h2><p class="text-gray-500 mb-8">Start shopping to add items</p><a href="shop.html" class="inline-flex items-center gap-2 px-8 py-4 bg-[#111] text-white rounded-2xl font-semibold hover:bg-[#7C3AED] transition-all"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Continue Shopping</a></div>`;
       return;
     }
     container.innerHTML = this.cart.map(item => {
@@ -508,7 +514,7 @@ const MODIT = {
       return `<div class="flex items-center gap-5 p-5 bg-white rounded-2xl border border-[#ECECEC] reveal visible cart-item">
         <img src="${p.image}" alt="${p.name}" class="w-20 h-20 object-cover rounded-xl">
         <div class="flex-1 min-w-0">
-          <p class="text-xs font-semibold text-[#FFC107]">${p.brand}</p>
+          <p class="text-xs font-semibold text-[#7C3AED]">${p.brand}</p>
           <h3 class="font-semibold text-gray-800 truncate">${p.name}</h3>
           <p class="text-lg font-bold text-gray-900 mt-1">${this.formatPrice(p.price)}</p>
         </div>
