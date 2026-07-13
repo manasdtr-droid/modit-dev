@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { getAiReply, getMarketData } = require('./api/_shared');
+const { createLead, getAiReply, getMarketData, getPublicConfig } = require('./api/_shared');
 
 const rootDir = __dirname;
 const port = Number(process.env.PORT || 8765);
@@ -98,6 +98,11 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    if (req.method === 'GET' && url.pathname === '/api/config') {
+      sendJson(res, 200, getPublicConfig());
+      return;
+    }
+
     if (req.method === 'POST' && url.pathname === '/api/chat') {
       const body = await readRequestBody(req);
       const payload = body ? JSON.parse(body) : {};
@@ -106,6 +111,18 @@ const server = http.createServer(async (req, res) => {
         source: 'modit-api',
         generatedAt: new Date().toISOString()
       });
+      return;
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/leads') {
+      const body = await readRequestBody(req);
+      const payload = body ? JSON.parse(body) : {};
+      const result = await createLead(payload, {
+        userAgent: req.headers['user-agent'],
+        ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress,
+        referer: req.headers.referer || req.headers.referrer
+      });
+      sendJson(res, 200, result);
       return;
     }
 

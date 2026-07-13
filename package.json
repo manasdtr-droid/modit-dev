@@ -5,6 +5,6 @@
   "description": "MODIT static ecommerce storefront with lightweight market and chat APIs.",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check js/app.js && node --check server.js && node --check api/_shared.js && node --check api/market-signals.js && node --check api/chat.js"
+    "check": "node --check js/app.js && node --check server.js && node --check api/_shared.js && node --check api/market-signals.js && node --check api/chat.js && node --check api/config.js && node --check api/leads.js"
   }
 }

@@ -9,3 +9,6 @@ vite.config.ts
 tsconfig.json
 components.json
 eslint.config.js
+.env
+.env.*
+.tmp

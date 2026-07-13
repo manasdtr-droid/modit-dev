@@ -1,5 +1,9 @@
 const MODIT = {
   whatsappPhone: '',
+  runtimeConfig: {
+    leadCaptureConfigured: false,
+    leadTarget: 'local dev only'
+  },
 
   products: [
     { id: 1, name: "UltraTech Premium Cement (43 Grade)", category: "cement", brand: "UltraTech", price: 380, originalPrice: 420, rating: 4.7, reviews: 2345, image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80", badge: "Bestseller", delivery: "45 min", unit: "50 kg", sponsored: true, marketSignal: { materialKey: "cement_43_grade", label: "Cement 43 Grade", unit: "50 kg bag", todayPrice: 380, previousAiForToday: 376, aiTomorrowPrice: 384, confidence: 74, trend: "up", updatedAt: "01 Jul 2026, 09:00 IST", source: "MODIT supplier index" } },
@@ -34,6 +38,7 @@ const MODIT = {
 
   init() {
     this.loadCart();
+    this.loadRuntimeConfig();
     this.initMobileMenu();
     this.initScrollAnimations();
     this.initSearchToggle();
@@ -46,6 +51,7 @@ const MODIT = {
     this.initPincodeForms();
     this.initEstimator();
     this.initRfqForm();
+    this.initContactForm();
     this.initWhatsappSupport();
     this.loadMarketSignals();
   },
@@ -161,6 +167,83 @@ const MODIT = {
     return '\u20B9' + Math.round(p).toLocaleString('en-IN');
   },
 
+  async loadRuntimeConfig() {
+    if (!window.location.protocol.startsWith('http')) return;
+    try {
+      const response = await fetch('/api/config', { headers: { 'Accept': 'application/json' } });
+      if (!response.ok) throw new Error('Config API unavailable');
+      const config = await response.json();
+      this.whatsappPhone = String(config.whatsappPhone || '').replace(/\D/g, '');
+      this.runtimeConfig = {
+        leadCaptureConfigured: Boolean(config.leadCaptureConfigured),
+        leadTarget: config.leadTarget || 'configured webhook'
+      };
+      this.refreshWhatsappLinks();
+    } catch (error) {
+      console.warn('Using embedded runtime config:', error.message);
+    }
+  },
+
+  refreshWhatsappLinks() {
+    const support = document.getElementById('whatsapp-support');
+    if (support) support.href = this.whatsappUrl('I want help with MODIT construction material procurement.');
+    const cartWhatsapp = document.getElementById('send-cart-whatsapp');
+    if (cartWhatsapp) cartWhatsapp.href = this.whatsappUrl(this.cartWhatsappMessage());
+  },
+
+  cartLeadItems() {
+    return this.cart.map(item => {
+      const product = this.getProduct(item.id);
+      if (!product) return null;
+      return {
+        id: product.id,
+        name: product.name,
+        qty: item.qty,
+        unit: product.unit,
+        unitPrice: product.price,
+        lineTotal: product.price * item.qty
+      };
+    }).filter(Boolean);
+  },
+
+  leadSuccessMessage(message) {
+    return this.runtimeConfig.leadCaptureConfigured
+      ? message
+      : 'Lead prepared locally. Configure LEADS_WEBHOOK_URL on Vercel to store production leads.';
+  },
+
+  async submitLead(payload, options = {}) {
+    const enriched = {
+      ...payload,
+      page: window.location.href
+    };
+    try {
+      if (!window.location.protocol.startsWith('http')) throw new Error('Lead API needs the local server or Vercel');
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(enriched)
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.ok === false) throw new Error(result.error || 'Lead capture failed');
+      if (!options.silent) this.showToast(this.leadSuccessMessage(options.successMessage || 'Request received. MODIT will contact you.'));
+      if (options.resultElement) {
+        options.resultElement.innerHTML = `<strong>Request captured</strong><span>Lead ID ${result.leadId || 'generated'}${result.delivered ? ` sent to ${result.delivery?.target || 'lead system'}` : ''}.</span><small>${this.runtimeConfig.leadCaptureConfigured ? 'MODIT team will confirm rates, stock and dispatch.' : 'Production storage needs LEADS_WEBHOOK_URL on Vercel.'}</small>`;
+      }
+      return result;
+    } catch (error) {
+      if (!options.silent) this.showToast(error.message || 'Lead capture failed');
+      if (options.resultElement) {
+        options.resultElement.innerHTML = `<strong>Could not capture request</strong><span>${error.message || 'Please try again.'}</span>`;
+      }
+      throw error;
+    }
+  },
+
+  formDataObject(form) {
+    return Object.fromEntries(new FormData(form).entries());
+  },
+
   normalizePincode(value) {
     return String(value || '').replace(/\D/g, '').slice(0, 6);
   },
@@ -258,7 +341,16 @@ const MODIT = {
         button.addEventListener('click', () => this.addItemsToCart([{ id: Number(button.dataset.boqProduct), qty: Number(button.dataset.boqQty) || 1 }]));
       });
       results.querySelector('#add-boq-cart')?.addEventListener('click', () => this.addItemsToCart(lines.map(line => ({ id: line.productId, qty: Math.max(1, Math.min(line.qty, 20)) }))));
-      results.querySelector('#send-boq-whatsapp')?.addEventListener('click', () => this.openWhatsapp(`MODIT BOQ estimate for ${values.builtup || 0} sq ft at pincode ${status.pin || 'not shared'}:\n${lines.map(line => `${line.label}: ${line.qty} ${line.unit}`).join('\n')}`));
+      results.querySelector('#send-boq-whatsapp')?.addEventListener('click', () => {
+        const message = `MODIT BOQ estimate for ${values.builtup || 0} sq ft at pincode ${status.pin || 'not shared'}:\n${lines.map(line => `${line.label}: ${line.qty} ${line.unit}`).join('\n')}`;
+        this.submitLead({
+          type: 'boq',
+          source: 'boq_whatsapp',
+          message,
+          fields: { ...values, coverage: status.label, lines }
+        }, { silent: true }).catch(() => {});
+        this.openWhatsapp(message);
+      });
     };
     form.addEventListener('submit', event => {
       event.preventDefault();
@@ -272,24 +364,77 @@ const MODIT = {
     if (!form) return;
     const result = document.getElementById('rfq-result');
     const buildMessage = () => {
-      const data = Object.fromEntries(new FormData(form).entries());
+      const data = this.formDataObject(form);
       const file = form.querySelector('input[type="file"]')?.files?.[0];
       return {
-        text: `MODIT RFQ\nCompany: ${data.company || 'Not shared'}\nPincode: ${data.pincode || 'Not shared'}\nGST/PO: ${data.gst || 'Not shared'}\nRequired by: ${data.date || 'Flexible'}\nMaterials:\n${data.materials || 'Material list pending'}\nFile: ${file ? file.name : 'No file attached in browser handoff'}`,
+        text: `MODIT RFQ\nCompany: ${data.company || 'Not shared'}\nContact: ${data.contact || 'Not shared'}\nPhone: ${data.phone || 'Not shared'}\nEmail: ${data.email || 'Not shared'}\nPincode: ${data.pincode || 'Not shared'}\nGST/PO: ${data.gst || 'Not shared'}\nRequired by: ${data.date || 'Flexible'}\nMaterials:\n${data.materials || 'Material list pending'}\nFile: ${file ? file.name : 'No file attached in browser handoff'}`,
         data,
         file
       };
     };
-    form.addEventListener('submit', event => {
+    const buildLead = (source = 'rfq_form') => {
+      const { data, file, text } = buildMessage();
+      const status = this.getCoverageStatus(data.pincode);
+      return {
+        type: 'rfq',
+        source,
+        customer: {
+          name: data.contact,
+          phone: data.phone,
+          email: data.email,
+          company: data.company
+        },
+        message: text,
+        fields: {
+          ...data,
+          coverage: status.label,
+          fileName: file ? file.name : ''
+        }
+      };
+    };
+    form.addEventListener('submit', async event => {
       event.preventDefault();
       const { data, file } = buildMessage();
       const status = this.getCoverageStatus(data.pincode);
       if (result) {
         result.innerHTML = `<strong>RFQ prepared</strong><span>${status.label}. ${file ? `File noted: ${file.name}.` : 'No file attached yet.'}</span><small>Final rate, stock, GST and dispatch slot will be confirmed before billing.</small>`;
       }
-      this.showToast('RFQ summary prepared');
+      await this.submitLead(buildLead('rfq_form'), {
+        successMessage: 'RFQ captured. MODIT will confirm rates and dispatch.',
+        resultElement: result
+      }).catch(() => {});
     });
-    document.getElementById('send-rfq-whatsapp')?.addEventListener('click', () => this.openWhatsapp(buildMessage().text));
+    document.getElementById('send-rfq-whatsapp')?.addEventListener('click', () => {
+      const message = buildMessage().text;
+      this.submitLead(buildLead('rfq_whatsapp'), { silent: true }).catch(() => {});
+      this.openWhatsapp(message);
+    });
+  },
+
+  initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const result = document.getElementById('contact-result');
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const data = this.formDataObject(form);
+      const name = [data.firstName, data.lastName].filter(Boolean).join(' ').trim();
+      await this.submitLead({
+        type: 'contact',
+        source: 'contact_page',
+        customer: {
+          name,
+          phone: data.phone,
+          email: data.email,
+          company: data.company
+        },
+        message: data.message,
+        fields: data
+      }, {
+        successMessage: 'Message captured. MODIT will contact you.',
+        resultElement: result
+      }).then(() => form.reset()).catch(() => {});
+    });
   },
 
   initWhatsappSupport() {
@@ -301,6 +446,13 @@ const MODIT = {
     link.target = '_blank';
     link.rel = 'noopener';
     link.innerHTML = '<span>WA</span><strong>Buying Desk</strong>';
+    link.addEventListener('click', () => {
+      this.submitLead({
+        type: 'whatsapp_general',
+        source: 'floating_buying_desk',
+        message: 'I want help with MODIT construction material procurement.'
+      }, { silent: true }).catch(() => {});
+    });
     document.body.appendChild(link);
   },
 
@@ -755,6 +907,19 @@ const MODIT = {
       cartWhatsapp.href = this.whatsappUrl(this.cartWhatsappMessage());
       cartWhatsapp.target = '_blank';
       cartWhatsapp.rel = 'noopener';
+      cartWhatsapp.onclick = () => {
+        this.submitLead({
+          type: 'cart_whatsapp',
+          source: 'cart_page',
+          message: this.cartWhatsappMessage(),
+          cart: this.cartLeadItems(),
+          totals: {
+            subtotal: total,
+            gst,
+            total: total + gst
+          }
+        }, { silent: true }).catch(() => {});
+      };
     }
   }
 };

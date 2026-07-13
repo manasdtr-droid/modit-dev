@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Details - MODIT</title>
-<link rel="stylesheet" href="css/style.css?v=20260713-brand1">
+<link rel="stylesheet" href="css/style.css?v=20260713-lead1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260713-brand1"></script>
+<script src="js/app.js?v=20260713-lead1"></script>
 <script>
 function renderProductDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -165,7 +165,15 @@ function renderProductDetail() {
     window.location.href = 'checkout.html';
   });
   document.getElementById('product-whatsapp').addEventListener('click', () => {
-    MODIT.openWhatsapp(`Product inquiry: ${p.name}\nQuantity: ${qty}\nPincode: not shared\nNeed final stock, GST and delivery confirmation.`);
+    const message = `Product inquiry: ${p.name}\nQuantity: ${qty}\nPincode: not shared\nNeed final stock, GST and delivery confirmation.`;
+    MODIT.submitLead({
+      type: 'product_inquiry',
+      source: 'product_detail_whatsapp',
+      message,
+      fields: { productId: p.id, productName: p.name, category: p.category, qty },
+      cart: [{ id: p.id, name: p.name, qty, unit: p.unit, unitPrice: p.price, lineTotal: p.price * qty }]
+    }, { silent: true }).catch(() => {});
+    MODIT.openWhatsapp(message);
   });
 
   const related = MODIT.getRelatedProducts(p.category, p.id);

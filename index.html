@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MODIT - Everything for Building. Delivered in Hours.</title>
 <meta name="description" content="India's quick-commerce platform for construction materials, hardware, plumbing, electricals, tiles and power tools.">
-<link rel="stylesheet" href="css/style.css?v=20260713-brand1">
+<link rel="stylesheet" href="css/style.css?v=20260713-lead1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -351,12 +351,20 @@
     </div>
     <form class="rfq-form reveal-right" id="rfq-form">
       <div class="form-row">
-        <label><span>Name / Company</span><input type="text" name="company" placeholder="ABC Contractors"></label>
+        <label><span>Company</span><input type="text" name="company" placeholder="ABC Contractors"></label>
         <label><span>GSTIN / PO Ref</span><input type="text" name="gst" placeholder="Optional"></label>
       </div>
       <div class="form-row">
+        <label><span>Contact name</span><input type="text" name="contact" placeholder="Site purchase manager"></label>
+        <label><span>Phone</span><input type="tel" name="phone" required placeholder="+91 98765 43210"></label>
+      </div>
+      <div class="form-row">
         <label><span>Delivery pincode</span><input type="text" inputmode="numeric" maxlength="6" name="pincode" placeholder="201301"></label>
+        <label><span>Email</span><input type="email" name="email" placeholder="purchase@example.com"></label>
+      </div>
+      <div class="form-row">
         <label><span>Required by</span><input type="date" name="date"></label>
+        <label><span>Order type</span><select name="orderType"><option>Bulk quote</option><option>Repeat purchase</option><option>Project supply</option><option>Dealer partnership</option></select></label>
       </div>
       <label><span>Material list</span><textarea name="materials" rows="6" placeholder="Example: 80 bags UltraTech cement, 20 coils Polycab 1.5 sq mm, 900 sq ft tiles..."></textarea></label>
       <label><span>Upload BOQ file</span><input type="file" name="boq" accept=".pdf,.xls,.xlsx,.csv,.jpg,.jpeg,.png"></label>
@@ -434,6 +442,6 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260713-brand1"></script>
+<script src="js/app.js?v=20260713-lead1"></script>
 </body>
 </html>
