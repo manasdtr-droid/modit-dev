@@ -1,0 +1,11 @@
+src
+/data
+index-ssr.html
+MODIT-PROJECT-OVERVIEW.md
+AGENTS.md
+bun.lock
+bunfig.toml
+vite.config.ts
+tsconfig.json
+components.json
+eslint.config.js

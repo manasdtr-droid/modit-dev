@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Details - MODIT</title>
-<link rel="stylesheet" href="css/style.css?v=20260701-market6">
+<link rel="stylesheet" href="css/style.css?v=20260713-production1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260701-market6"></script>
+<script src="js/app.js?v=20260713-production1"></script>
 <script>
 function renderProductDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -117,7 +117,7 @@ function renderProductDetail() {
       <h1>${p.name}</h1>
       <div class="flex items-center gap-2 mt-3">
         <div class="flex items-center gap-1">
-          <svg class="w-4 h-4 text-[#FFC107]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-[#7C3AED]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           <span class="font-bold">${p.rating}</span>
           <span class="text-gray-400">(${p.reviews.toLocaleString('en-IN')} reviews)</span>
         </div>
@@ -128,7 +128,7 @@ function renderProductDetail() {
       <div class="flex flex-wrap gap-3 mt-6">
         <div class="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-xl px-4 py-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Free Delivery</div>
         <div class="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-xl px-4 py-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> In Stock</div>
-        <div class="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-xl px-4 py-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> GST Invoice</div>
+        <div class="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-xl px-4 py-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> GST Invoice</div>
       </div>
       <div class="product-actions">
         <div class="qty-selector"><button id="qty-down"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/></svg></button><span id="qty-display">1</span><button id="qty-up"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button></div>

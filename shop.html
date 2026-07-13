@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop - MODIT Construction Materials</title>
 <meta name="description" content="Browse India's largest selection of premium construction materials. Cement, paint, tiles, plumbing, electricals and more.">
-<link rel="stylesheet" href="css/style.css?v=20260701-market6">
+<link rel="stylesheet" href="css/style.css?v=20260713-production1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -102,9 +102,9 @@
       <div>
         <div class="flex items-center justify-between mb-8 reveal flex-wrap gap-4">
           <p class="text-sm text-gray-500" id="results-count">Showing 12 products</p>
-          <div class="flex items-center gap-3">
-            <input type="text" placeholder="Search products..." id="shop-search" class="border border-[#ECECEC] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#FFC107] w-48 lg:w-64" style="font-family:inherit;">
-            <select id="sort-select" class="border border-[#ECECEC] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#FFC107]" style="font-family:inherit;" onchange="applyFilters()">
+          <div class="shop-toolbar-controls flex items-center gap-3">
+            <input type="text" placeholder="Search products..." id="shop-search" class="border border-[#ECECEC] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#7C3AED] w-48 lg:w-64" style="font-family:inherit;">
+            <select id="sort-select" class="border border-[#ECECEC] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#7C3AED]" style="font-family:inherit;" onchange="applyFilters()">
               <option value="default">Sort: Default</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
@@ -158,7 +158,7 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260701-market6"></script>
+<script src="js/app.js?v=20260713-production1"></script>
 <script>
 function applyFilters() {
   const cat = document.querySelector('input[name="category"]:checked')?.value || 'all';

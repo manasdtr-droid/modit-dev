@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = path.join(__dirname, '..');
+const apiDataDir = path.join(__dirname, 'data');
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -16,7 +17,7 @@ function normalizeText(value) {
 }
 
 function getMarketData() {
-  const market = readJson(path.join(rootDir, 'data', 'market-signals.json'));
+  const market = readJson(path.join(apiDataDir, 'market-signals.json'));
   return {
     updatedAt: market.updatedAt,
     signals: market.signals.map(signal => ({
@@ -27,7 +28,7 @@ function getMarketData() {
 }
 
 function getKnowledgeBank() {
-  return readJson(path.join(rootDir, 'data', 'ai-knowledge-bank.json'));
+  return readJson(path.join(apiDataDir, 'ai-knowledge-bank.json'));
 }
 
 function countKeywordMatches(query, keywords = []) {

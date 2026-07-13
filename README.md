@@ -50,7 +50,8 @@ about.html              Company page
 contact.html            Contact page
 css/style.css           Shared styling
 js/app.js               Product/cart/market/chat frontend logic
-data/market-signals.json API-backed market data feed
+api/data/market-signals.json API-backed market data feed
+api/data/ai-knowledge-bank.json AI procurement and estimator knowledge bank
 server.js               Static server and API endpoints
 ```
 
@@ -59,4 +60,5 @@ server.js               Static server and API endpoints
 - Product data is still embedded in `js/app.js`.
 - Cart state is browser `localStorage` under `modit_cart`.
 - Market signals are demo procurement-planning estimates, not guaranteed final selling prices.
+- The AI knowledge bank is packaged with the API functions and is not intended to be served directly as public static JSON.
 - Modit AI is currently deterministic backend logic. Production AI should connect this endpoint to a secure LLM backend with catalog retrieval and human handoff.

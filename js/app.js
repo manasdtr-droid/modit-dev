@@ -530,18 +530,18 @@ const MODIT = {
       const p = this.getProduct(item.id);
       if (!p) return '';
       return `<div class="flex items-center gap-5 p-5 bg-white rounded-2xl border border-[#ECECEC] reveal visible cart-item">
-        <img src="${p.image}" alt="${p.name}" class="w-20 h-20 object-cover rounded-xl">
-        <div class="flex-1 min-w-0">
+        <img src="${p.image}" alt="${p.name}" class="cart-item-media w-20 h-20 object-cover rounded-xl">
+        <div class="cart-item-body flex-1 min-w-0">
           <p class="text-xs font-semibold text-[#7C3AED]">${p.brand}</p>
           <h3 class="font-semibold text-gray-800 truncate">${p.name}</h3>
           <p class="text-lg font-bold text-gray-900 mt-1">${this.formatPrice(p.price)}</p>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="cart-item-qty flex items-center gap-3">
           <button class="qty-btn w-9 h-9 rounded-xl border border-[#ECECEC] flex items-center justify-center hover:bg-gray-50 transition-colors" data-id="${p.id}" data-delta="-1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/></svg></button>
           <span class="w-8 text-center font-semibold">${item.qty}</span>
           <button class="qty-btn w-9 h-9 rounded-xl border border-[#ECECEC] flex items-center justify-center hover:bg-gray-50 transition-colors" data-id="${p.id}" data-delta="1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button>
         </div>
-        <div class="text-right min-w-[80px]">
+        <div class="cart-item-total text-right min-w-[80px]">
           <p class="font-bold text-gray-900">${this.formatPrice(p.price * item.qty)}</p>
           <button class="remove-btn text-xs text-red-500 hover:text-red-700 mt-1" data-id="${p.id}">Remove</button>
         </div>

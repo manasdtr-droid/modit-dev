@@ -5,6 +5,20 @@ const { getAiReply, getMarketData } = require('./api/_shared');
 
 const rootDir = __dirname;
 const port = Number(process.env.PORT || 8765);
+const blockedStaticPrefixes = ['/api/data/', '/data/', '/src/', '/.git/', '/.lovable/'];
+const blockedStaticFiles = new Set([
+  '/index-ssr.html',
+  '/agents.md',
+  '/modit-project-overview.md',
+  '/package.json',
+  '/vercel.json',
+  '/vite.config.ts',
+  '/tsconfig.json',
+  '/components.json',
+  '/bun.lock',
+  '/bunfig.toml',
+  '/eslint.config.js'
+]);
 
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
@@ -40,13 +54,19 @@ function readRequestBody(req) {
   });
 }
 
+function isBlockedStaticPath(pathname) {
+  const normalized = pathname.replace(/\\/g, '/');
+  const lower = normalized.toLowerCase();
+  return blockedStaticFiles.has(normalized) || blockedStaticFiles.has(lower) || blockedStaticPrefixes.some(prefix => lower.startsWith(prefix));
+}
+
 function serveStatic(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const requestedPath = url.pathname === '/' ? '/index.html' : url.pathname;
   const decodedPath = decodeURIComponent(requestedPath);
   const fullPath = path.resolve(rootDir, `.${decodedPath}`);
 
-  if (!fullPath.startsWith(rootDir)) {
+  if (!fullPath.startsWith(rootDir) || isBlockedStaticPath(decodedPath)) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end('Forbidden');
     return;
@@ -63,7 +83,7 @@ function serveStatic(req, res) {
       'Content-Type': contentTypes[ext] || 'application/octet-stream',
       'Cache-Control': ext === '.html' ? 'no-store' : 'public, max-age=60'
     });
-    res.end(data);
+    res.end(req.method === 'HEAD' ? undefined : data);
   });
 }
 
