@@ -313,13 +313,18 @@ const MODIT = {
     const form = document.getElementById('boq-estimator-form');
     const results = document.getElementById('boq-estimator-results');
     if (!form || !results) return;
-    const render = () => {
+    results.innerHTML = `<div class="boq-empty">
+      <strong>Ready to generate BOQ</strong>
+      <span>Enter the site scope and click Generate BOQ to create a material plan.</span>
+    </div>`;
+    const render = (showFeedback = false) => {
       const formData = new FormData(form);
       const values = Object.fromEntries(formData.entries());
       const status = this.getCoverageStatus(values.pincode);
       const lines = this.estimateBoq(values);
+      const generatedAt = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
       results.innerHTML = `<div class="boq-result-head">
-          <div><p class="eyebrow">Generated BOQ</p><h3>${values.builtup || 0} sq ft planning estimate</h3></div>
+          <div><p class="eyebrow">Generated BOQ</p><h3>${values.builtup || 0} sq ft planning estimate</h3><small>Updated ${generatedAt}</small></div>
           <div class="boq-service-pill ${status.state}">${status.label}</div>
         </div>
         <div class="boq-lines">
@@ -351,12 +356,15 @@ const MODIT = {
         }, { silent: true }).catch(() => {});
         this.openWhatsapp(message);
       });
+      if (showFeedback) {
+        this.showToast('BOQ generated');
+        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     };
     form.addEventListener('submit', event => {
       event.preventDefault();
-      render();
+      render(true);
     });
-    render();
   },
 
   initRfqForm() {
@@ -392,9 +400,20 @@ const MODIT = {
         }
       };
     };
+    const validateRfq = (data) => {
+      if (!String(data.phone || '').trim()) return 'Add a phone number so MODIT can confirm the quote.';
+      if (!String(data.materials || '').trim()) return 'Add at least one material or BOQ line.';
+      return '';
+    };
     form.addEventListener('submit', async event => {
       event.preventDefault();
       const { data, file } = buildMessage();
+      const validation = validateRfq(data);
+      if (validation) {
+        if (result) result.innerHTML = `<strong>RFQ needs one more detail</strong><span>${validation}</span>`;
+        this.showToast(validation);
+        return;
+      }
       const status = this.getCoverageStatus(data.pincode);
       if (result) {
         result.innerHTML = `<strong>RFQ prepared</strong><span>${status.label}. ${file ? `File noted: ${file.name}.` : 'No file attached yet.'}</span><small>Final rate, stock, GST and dispatch slot will be confirmed before billing.</small>`;

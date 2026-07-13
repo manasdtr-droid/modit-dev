@@ -1570,6 +1570,23 @@ svg { flex-shrink: 0; }
 .estimator-results {
   margin-top: 22px;
 }
+.boq-empty {
+  border: 1px dashed color-mix(in oklab, var(--primary) 35%, var(--border));
+  border-radius: var(--radius-xl);
+  background: color-mix(in oklab, var(--primary) 5%, white);
+  padding: 22px;
+}
+.boq-empty strong,
+.boq-empty span,
+.boq-result-head small {
+  display: block;
+}
+.boq-empty span,
+.boq-result-head small {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
 .boq-result-head,
 .boq-actions,
 .rfq-actions {

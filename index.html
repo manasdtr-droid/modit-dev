@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MODIT - Everything for Building. Delivered in Hours.</title>
 <meta name="description" content="India's quick-commerce platform for construction materials, hardware, plumbing, electricals, tiles and power tools.">
-<link rel="stylesheet" href="css/style.css?v=20260713-lead1">
+<link rel="stylesheet" href="css/style.css?v=20260713-buttonfix2">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -349,7 +349,7 @@
         <span>WhatsApp handoff ready</span>
       </div>
     </div>
-    <form class="rfq-form reveal-right" id="rfq-form">
+    <form class="rfq-form reveal-right" id="rfq-form" novalidate>
       <div class="form-row">
         <label><span>Company</span><input type="text" name="company" placeholder="ABC Contractors"></label>
         <label><span>GSTIN / PO Ref</span><input type="text" name="gst" placeholder="Optional"></label>
@@ -369,7 +369,7 @@
       <label><span>Material list</span><textarea name="materials" rows="6" placeholder="Example: 80 bags UltraTech cement, 20 coils Polycab 1.5 sq mm, 900 sq ft tiles..."></textarea></label>
       <label><span>Upload BOQ file</span><input type="file" name="boq" accept=".pdf,.xls,.xlsx,.csv,.jpg,.jpeg,.png"></label>
       <div class="rfq-actions">
-        <button type="submit" class="btn btn-primary">Prepare RFQ</button>
+        <button type="submit" class="btn btn-primary">Generate RFQ</button>
         <button type="button" class="btn btn-outline" id="send-rfq-whatsapp">Send to WhatsApp</button>
       </div>
       <div class="rfq-result" id="rfq-result"></div>
@@ -442,6 +442,6 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260713-lead1"></script>
+<script src="js/app.js?v=20260713-buttonfix2"></script>
 </body>
 </html>
