@@ -1,4 +1,6 @@
 const MODIT = {
+  whatsappPhone: '',
+
   products: [
     { id: 1, name: "UltraTech Premium Cement (43 Grade)", category: "cement", brand: "UltraTech", price: 380, originalPrice: 420, rating: 4.7, reviews: 2345, image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80", badge: "Bestseller", delivery: "45 min", unit: "50 kg", sponsored: true, marketSignal: { materialKey: "cement_43_grade", label: "Cement 43 Grade", unit: "50 kg bag", todayPrice: 380, previousAiForToday: 376, aiTomorrowPrice: 384, confidence: 74, trend: "up", updatedAt: "01 Jul 2026, 09:00 IST", source: "MODIT supplier index" } },
     { id: 2, name: "Asian Paints Royale Shyne (20L)", category: "paint", brand: "Asian Paints", price: 5499, originalPrice: 6299, rating: 4.5, reviews: 1892, image: "https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=400&q=80", badge: "-13%", delivery: "1 hour", unit: "20 L", sponsored: true, marketSignal: { materialKey: "premium_paint_20l", label: "Premium Paint", unit: "20 L pail", todayPrice: 5499, previousAiForToday: 5520, aiTomorrowPrice: 5475, confidence: 68, trend: "down", updatedAt: "01 Jul 2026, 09:00 IST", source: "MODIT demand index" } },
@@ -15,6 +17,20 @@ const MODIT = {
   ],
 
   cart: [],
+  serviceAreas: {
+    active: {
+      pincodes: ['201301', '201304', '201305', '201306', '201307', '201309', '201310'],
+      label: 'Noida pilot active',
+      eta: '45-120 min express, same-day bulk dispatch',
+      support: 'GST invoice, unloading notes, RFQ desk and WhatsApp buying support'
+    },
+    planned: {
+      pincodes: ['800001', '800020', '800014', '801503', '823001', '842001'],
+      label: 'Bihar launch waitlist',
+      eta: 'Supplier mapping and contractor onboarding in progress',
+      support: 'Join waitlist for early bulk procurement support'
+    }
+  },
 
   init() {
     this.loadCart();
@@ -27,6 +43,10 @@ const MODIT = {
     this.updateCartBadge();
     this.initNavbarScroll();
     this.initModitAI();
+    this.initPincodeForms();
+    this.initEstimator();
+    this.initRfqForm();
+    this.initWhatsappSupport();
     this.loadMarketSignals();
   },
 
@@ -64,6 +84,18 @@ const MODIT = {
     else { this.cart.push({ id, qty: 1 }); }
     this.saveCart();
     this.showToast('Added to cart');
+  },
+
+  addItemsToCart(items) {
+    items.forEach(item => {
+      const product = this.getProduct(item.id);
+      if (!product) return;
+      const existing = this.cart.find(cartItem => cartItem.id === product.id);
+      if (existing) existing.qty += item.qty || 1;
+      else this.cart.push({ id: product.id, qty: item.qty || 1 });
+    });
+    this.saveCart();
+    this.showToast('BOQ items added to cart');
   },
 
   removeFromCart(id) {
@@ -127,6 +159,169 @@ const MODIT = {
 
   formatPrice(p) {
     return '\u20B9' + Math.round(p).toLocaleString('en-IN');
+  },
+
+  normalizePincode(value) {
+    return String(value || '').replace(/\D/g, '').slice(0, 6);
+  },
+
+  getCoverageStatus(pincode) {
+    const pin = this.normalizePincode(pincode);
+    if (this.serviceAreas.active.pincodes.includes(pin)) {
+      return { state: 'active', pin, ...this.serviceAreas.active };
+    }
+    if (this.serviceAreas.planned.pincodes.includes(pin) || pin.startsWith('8')) {
+      return { state: 'planned', pin, ...this.serviceAreas.planned };
+    }
+    return {
+      state: 'review',
+      pin,
+      label: pin.length === 6 ? 'Coverage review required' : 'Enter a 6 digit pincode',
+      eta: pin.length === 6 ? 'MODIT can capture the requirement and confirm serviceability manually.' : 'Use your site delivery pincode.',
+      support: pin.length === 6 ? 'RFQ desk can still collect BOQ, GST and unloading details.' : 'No pincode checked yet.'
+    };
+  },
+
+  initPincodeForms() {
+    document.querySelectorAll('[data-pincode-form]').forEach(form => {
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const input = form.querySelector('input');
+        const result = form.parentElement?.querySelector('[data-pincode-result]') || document.querySelector('.hero-coverage-result');
+        const status = this.getCoverageStatus(input?.value);
+        if (input) input.value = status.pin;
+        if (result) result.innerHTML = this.coverageResultMarkup(status);
+      });
+    });
+  },
+
+  coverageResultMarkup(status) {
+    return `<div class="coverage-result-card ${status.state}">
+      <strong>${status.label}</strong>
+      <span>${status.pin ? `Pincode ${status.pin}` : 'Pincode needed'}</span>
+      <p>${status.eta}</p>
+      <small>${status.support}</small>
+    </div>`;
+  },
+
+  estimateBoq(values) {
+    const builtup = Math.max(0, Number(values.builtup || 0));
+    const slab = Math.max(0, Number(values.slab || builtup * 0.6));
+    const paint = Math.max(0, Number(values.paint || builtup * 2.2));
+    const tiles = Math.max(0, Number(values.tiles || builtup * 0.45));
+    const bathrooms = Math.max(0, Number(values.bathrooms || 0));
+    const points = Math.max(0, Number(values.points || 0));
+    const wastage = Math.max(0, Number(values.wastage || 0.07));
+    const cementBags = Math.ceil((slab * 0.12) * 8.2 * (1 + wastage));
+    const paintLitres = Math.ceil((paint * 2 / 110) * (1 + wastage));
+    const tileArea = Math.ceil(tiles * (1 + wastage));
+    const wireCoils = Math.ceil((points * 18 * 1.12) / 90);
+    const pvcPipes = Math.ceil((bathrooms * 6 + builtup / 300) * (1 + wastage));
+    return [
+      { id: 1, label: 'Cement 43 Grade', qty: cementBags, unit: 'bags', productId: 1, category: 'cement', note: 'Planning quantity from slab area and nominal concrete factor.' },
+      { id: 2, label: 'Interior paint', qty: paintLitres, unit: 'litres', productId: 11, category: 'paint', note: 'Two-coat paint estimate using average coverage.' },
+      { id: 3, label: 'Vitrified tiles', qty: tileArea, unit: 'sq ft', productId: 4, category: 'tiles', note: 'Includes wastage allowance for cutting and breakage.' },
+      { id: 4, label: 'Copper wire', qty: wireCoils, unit: '90 m coils', productId: 3, category: 'electrical', note: 'Point-count planning estimate, electrician validation required.' },
+      { id: 5, label: 'PVC pipe', qty: pvcPipes, unit: '6 m pipes', productId: 7, category: 'plumbing', note: 'Bathroom and built-up-area planning estimate.' }
+    ];
+  },
+
+  initEstimator() {
+    const form = document.getElementById('boq-estimator-form');
+    const results = document.getElementById('boq-estimator-results');
+    if (!form || !results) return;
+    const render = () => {
+      const formData = new FormData(form);
+      const values = Object.fromEntries(formData.entries());
+      const status = this.getCoverageStatus(values.pincode);
+      const lines = this.estimateBoq(values);
+      results.innerHTML = `<div class="boq-result-head">
+          <div><p class="eyebrow">Generated BOQ</p><h3>${values.builtup || 0} sq ft planning estimate</h3></div>
+          <div class="boq-service-pill ${status.state}">${status.label}</div>
+        </div>
+        <div class="boq-lines">
+          ${lines.map(line => {
+            const product = this.getProduct(line.productId);
+            return `<article class="boq-line">
+              <div><strong>${line.label}</strong><span>${line.qty.toLocaleString('en-IN')} ${line.unit}</span><small>${line.note}</small></div>
+              <a href="shop.html?category=${line.category}">Shop ${line.category}</a>
+              <button type="button" data-boq-product="${line.productId}" data-boq-qty="${Math.max(1, Math.min(line.qty, 20))}">Add ${product?.unit || 'item'}</button>
+            </article>`;
+          }).join('')}
+        </div>
+        <div class="boq-actions">
+          <button type="button" class="btn btn-primary" id="add-boq-cart">Add starter cart</button>
+          <button type="button" class="btn btn-outline" id="send-boq-whatsapp">Send BOQ to WhatsApp</button>
+        </div>
+        <p class="market-note">Planning aid only. Structural quantities must be approved by a qualified engineer; electrical sizing must be checked by a licensed electrician.</p>`;
+      results.querySelectorAll('[data-boq-product]').forEach(button => {
+        button.addEventListener('click', () => this.addItemsToCart([{ id: Number(button.dataset.boqProduct), qty: Number(button.dataset.boqQty) || 1 }]));
+      });
+      results.querySelector('#add-boq-cart')?.addEventListener('click', () => this.addItemsToCart(lines.map(line => ({ id: line.productId, qty: Math.max(1, Math.min(line.qty, 20)) }))));
+      results.querySelector('#send-boq-whatsapp')?.addEventListener('click', () => this.openWhatsapp(`MODIT BOQ estimate for ${values.builtup || 0} sq ft at pincode ${status.pin || 'not shared'}:\n${lines.map(line => `${line.label}: ${line.qty} ${line.unit}`).join('\n')}`));
+    };
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      render();
+    });
+    render();
+  },
+
+  initRfqForm() {
+    const form = document.getElementById('rfq-form');
+    if (!form) return;
+    const result = document.getElementById('rfq-result');
+    const buildMessage = () => {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const file = form.querySelector('input[type="file"]')?.files?.[0];
+      return {
+        text: `MODIT RFQ\nCompany: ${data.company || 'Not shared'}\nPincode: ${data.pincode || 'Not shared'}\nGST/PO: ${data.gst || 'Not shared'}\nRequired by: ${data.date || 'Flexible'}\nMaterials:\n${data.materials || 'Material list pending'}\nFile: ${file ? file.name : 'No file attached in browser handoff'}`,
+        data,
+        file
+      };
+    };
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const { data, file } = buildMessage();
+      const status = this.getCoverageStatus(data.pincode);
+      if (result) {
+        result.innerHTML = `<strong>RFQ prepared</strong><span>${status.label}. ${file ? `File noted: ${file.name}.` : 'No file attached yet.'}</span><small>Final rate, stock, GST and dispatch slot will be confirmed before billing.</small>`;
+      }
+      this.showToast('RFQ summary prepared');
+    });
+    document.getElementById('send-rfq-whatsapp')?.addEventListener('click', () => this.openWhatsapp(buildMessage().text));
+  },
+
+  initWhatsappSupport() {
+    if (document.getElementById('whatsapp-support')) return;
+    const link = document.createElement('a');
+    link.id = 'whatsapp-support';
+    link.className = 'whatsapp-support';
+    link.href = this.whatsappUrl('I want help with MODIT construction material procurement.');
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.innerHTML = '<span>WA</span><strong>Buying Desk</strong>';
+    document.body.appendChild(link);
+  },
+
+  whatsappUrl(message) {
+    const normalized = String(message || '').replace(/%0A/gi, '\n').replace(/%20/g, ' ');
+    const params = new URLSearchParams({ text: normalized });
+    if (this.whatsappPhone) params.set('phone', this.whatsappPhone);
+    return `https://api.whatsapp.com/send?${params.toString()}`;
+  },
+
+  openWhatsapp(message) {
+    window.open(this.whatsappUrl(message), '_blank', 'noopener');
+  },
+
+  cartWhatsappMessage() {
+    if (!this.cart.length) return 'I want help preparing a MODIT construction material order.';
+    const lines = this.cart.map(item => {
+      const product = this.getProduct(item.id);
+      return product ? `${product.name} x ${item.qty}` : '';
+    }).filter(Boolean).join('\n');
+    return `MODIT cart request:\n${lines}\nTotal estimate: ${this.formatPrice(this.getCartTotal())}`;
   },
 
   getMarketProducts() {
@@ -555,6 +750,12 @@ const MODIT = {
     document.getElementById('cart-subtotal') && (document.getElementById('cart-subtotal').textContent = this.formatPrice(total));
     document.getElementById('cart-gst') && (document.getElementById('cart-gst').textContent = this.formatPrice(gst));
     document.getElementById('cart-grand-total') && (document.getElementById('cart-grand-total').textContent = this.formatPrice(total + gst));
+    const cartWhatsapp = document.getElementById('send-cart-whatsapp');
+    if (cartWhatsapp) {
+      cartWhatsapp.href = this.whatsappUrl(this.cartWhatsappMessage());
+      cartWhatsapp.target = '_blank';
+      cartWhatsapp.rel = 'noopener';
+    }
   }
 };
 

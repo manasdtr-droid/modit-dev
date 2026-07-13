@@ -48,6 +48,11 @@ cart.html               LocalStorage cart
 checkout.html           Demo checkout form
 about.html              Company page
 contact.html            Contact page
+cement-delivery-noida.html Local cement supply landing page
+electrical-materials-noida.html Local electrical supply landing page
+plumbing-materials-noida.html Local plumbing supply landing page
+contractor-bulk-material-supply-bihar.html Bihar bulk supply waitlist page
+robots.txt              Basic crawl rules for public static deployment
 css/style.css           Shared styling
 js/app.js               Product/cart/market/chat frontend logic
 api/data/market-signals.json API-backed market data feed
@@ -60,5 +65,6 @@ server.js               Static server and API endpoints
 - Product data is still embedded in `js/app.js`.
 - Cart state is browser `localStorage` under `modit_cart`.
 - Market signals are demo procurement-planning estimates, not guaranteed final selling prices.
+- The homepage now includes pincode coverage checks, a BOQ estimator, bulk RFQ handoff and local supply landing pages for SEO-driven demand capture.
 - The AI knowledge bank is packaged with the API functions and is not intended to be served directly as public static JSON.
 - Modit AI is currently deterministic backend logic. Production AI should connect this endpoint to a secure LLM backend with catalog retrieval and human handoff.

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/data/
+Disallow: /src/
+Disallow: /index-ssr.html

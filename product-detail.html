@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product Details - MODIT</title>
-<link rel="stylesheet" href="css/style.css?v=20260713-production1">
+<link rel="stylesheet" href="css/style.css?v=20260713-brand1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260713-production1"></script>
+<script src="js/app.js?v=20260713-brand1"></script>
 <script>
 function renderProductDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -125,6 +125,12 @@ function renderProductDetail() {
       <p class="text-sm text-gray-500 mt-2">Unit: ${p.unit} | Delivery: ${p.delivery}</p>
       <div class="price">${MODIT.formatPrice(p.price)} ${p.originalPrice ? `<span class="orig">${MODIT.formatPrice(p.originalPrice)}</span><span class="text-sm font-semibold text-green-600 ml-2">Save ${Math.round((1-p.price/p.originalPrice)*100)}%</span>` : ''}</div>
       ${MODIT.marketPanel(p)}
+      <div class="product-trust-panel">
+        <div><strong>Verified supply</strong><span>Brand and seller checks before dispatch.</span></div>
+        <div><strong>GST ready</strong><span>Invoice support with HSN/category details.</span></div>
+        <div><strong>Site delivery</strong><span>Unload timing and access notes captured.</span></div>
+        <div><strong>Rate confirmation</strong><span>Final stock, tax and freight confirmed before billing.</span></div>
+      </div>
       <div class="flex flex-wrap gap-3 mt-6">
         <div class="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-xl px-4 py-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Free Delivery</div>
         <div class="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-xl px-4 py-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> In Stock</div>
@@ -134,6 +140,7 @@ function renderProductDetail() {
         <div class="qty-selector"><button id="qty-down"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/></svg></button><span id="qty-display">1</span><button id="qty-up"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button></div>
         <button class="btn btn-primary btn-lg" id="add-to-cart-detail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Add to Cart</button>
         <button class="btn btn-dark btn-lg" id="buy-now">Buy Now</button>
+        <button class="btn btn-outline btn-lg" id="product-whatsapp">Ask Buying Desk</button>
       </div>
       <div class="mt-8 p-6 bg-gray-50 rounded-2xl border border-[#ECECEC]">
         <h3 class="font-bold mb-3">Why buy from MODIT?</h3>
@@ -156,6 +163,9 @@ function renderProductDetail() {
   document.getElementById('buy-now').addEventListener('click', () => {
     for (let i = 0; i < qty; i++) MODIT.addToCart(p.id);
     window.location.href = 'checkout.html';
+  });
+  document.getElementById('product-whatsapp').addEventListener('click', () => {
+    MODIT.openWhatsapp(`Product inquiry: ${p.name}\nQuantity: ${qty}\nPincode: not shared\nNeed final stock, GST and delivery confirmation.`);
   });
 
   const related = MODIT.getRelatedProducts(p.category, p.id);

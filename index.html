@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MODIT - Everything for Building. Delivered in Hours.</title>
 <meta name="description" content="India's quick-commerce platform for construction materials, hardware, plumbing, electricals, tiles and power tools.">
-<link rel="stylesheet" href="css/style.css?v=20260713-production1">
+<link rel="stylesheet" href="css/style.css?v=20260713-brand1">
 <link rel="icon" type="image/svg+xml" href="images/modit-logo-mark.svg">
 </head>
 <body>
@@ -19,8 +19,11 @@
       </a>
       <nav class="navbar-nav">
         <a href="shop.html">Products</a>
+        <a href="#coverage">Delivery</a>
+        <a href="#boq-estimator">Estimator</a>
         <a href="#material-market">Market</a>
         <a href="#contractors">Bulk Quote</a>
+        <a href="#project-desk">Projects</a>
         <a href="#contractors">Contractors</a>
         <a href="#modit-ai">Modit AI</a>
         <a href="about.html">About</a>
@@ -38,8 +41,11 @@
 
 <div class="mobile-menu" id="mobile-menu">
   <a href="shop.html">Products</a>
+  <a href="#coverage">Delivery</a>
+  <a href="#boq-estimator">Estimator</a>
   <a href="#material-market">Market</a>
   <a href="#contractors">Bulk Quote</a>
+  <a href="#project-desk">Projects</a>
   <a href="#contractors">Contractors</a>
   <a href="#modit-ai">Modit AI</a>
   <a href="about.html">About</a>
@@ -60,9 +66,21 @@
       <input type="text" placeholder="Search cement, paint, wires, pipes, tiles...">
       <button type="submit">Find Products</button>
     </form>
+    <form class="hero-availability" data-pincode-form>
+      <div>
+        <span>Check site delivery</span>
+        <strong>Enter pincode for ETA, bulk support and launch status</strong>
+      </div>
+      <label>
+        <span class="sr-only">Delivery pincode</span>
+        <input type="text" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" placeholder="201301">
+      </label>
+      <button type="submit">Check</button>
+    </form>
+    <div class="coverage-result hero-coverage-result" data-pincode-result></div>
     <div class="hero-actions">
       <a href="shop.html" class="btn btn-primary btn-lg">Start Buying <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#contractors" class="btn btn-outline btn-lg" style="color:white;border-color:rgba(255,255,255,.25);">Get Bulk Quote</a>
+      <a href="#boq-estimator" class="btn btn-outline btn-lg" style="color:white;border-color:rgba(255,255,255,.25);">Use BOQ Estimator</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-icon">01</div><div class="hero-stat-text"><div class="num">45 min</div><div class="label">priority delivery slots</div></div></div>
@@ -78,6 +96,30 @@
     <div><strong>Live rate signals</strong><span>See today's price movement before buying.</span></div>
     <div><strong>Bulk support</strong><span>Project-wise quotes for repeat buyers.</span></div>
     <div><strong>Site dispatch</strong><span>Delivery planned around unloading and priority in Noida now.</span></div>
+  </div>
+</section>
+
+<section class="section coverage-section" id="coverage">
+  <div class="container coverage-grid">
+    <div class="coverage-copy reveal-left">
+      <p class="eyebrow">Pincode Availability</p>
+      <h2 class="section-title">Know before you order: ETA, bulk desk and launch status.</h2>
+      <p class="section-subtitle" style="margin-top:18px;">MODIT should feel dependable before checkout. Buyers can verify service coverage, delivery type and support level for the site pincode.</p>
+      <form class="coverage-check-card" data-pincode-form>
+        <label>
+          <span>Site pincode</span>
+          <input type="text" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" placeholder="Try 201301 or 800001">
+        </label>
+        <button type="submit" class="btn btn-primary">Check Service</button>
+      </form>
+      <div class="coverage-result" data-pincode-result></div>
+    </div>
+    <div class="coverage-board reveal-right">
+      <div class="coverage-card active"><strong>Noida pilot</strong><span>Express delivery, GST billing and bulk quote desk are active.</span></div>
+      <div class="coverage-card planned"><strong>Bihar launch queue</strong><span>Pincode waitlist, contractor onboarding and supplier mapping.</span></div>
+      <div class="coverage-card"><strong>Heavy dispatch</strong><span>Schedule delivery by site access, unloading floor and vehicle restriction.</span></div>
+      <div class="coverage-card"><strong>WhatsApp buying desk</strong><span>Share BOQ, cart or repeat order list directly to MODIT support.</span></div>
+    </div>
   </div>
 </section>
 
@@ -126,6 +168,42 @@
   </div>
 </section>
 
+<section class="section estimator-section" id="boq-estimator">
+  <div class="container">
+    <div class="estimator-shell">
+      <div class="estimator-copy reveal-left">
+        <p class="eyebrow">AI Construction Estimator</p>
+        <h2 class="section-title">Convert site scope into a purchase-ready BOQ.</h2>
+        <p class="section-subtitle" style="margin-top:18px;">This estimator gives planning quantities for common materials and links each line to MODIT product categories. Structural and electrical quantities must still be validated by the responsible engineer.</p>
+        <div class="estimator-note">
+          <strong>Best use case</strong>
+          <span>Early purchase planning, quote preparation and repeat material lists for residential and contractor projects.</span>
+        </div>
+      </div>
+      <form class="estimator-form reveal-right" id="boq-estimator-form">
+        <div class="form-row">
+          <label><span>Built-up area</span><input type="number" min="100" step="50" name="builtup" value="2000"></label>
+          <label><span>Slab area</span><input type="number" min="0" step="50" name="slab" value="1200"></label>
+        </div>
+        <div class="form-row">
+          <label><span>Paint area</span><input type="number" min="0" step="50" name="paint" value="4500"></label>
+          <label><span>Tile area</span><input type="number" min="0" step="25" name="tiles" value="900"></label>
+        </div>
+        <div class="form-row">
+          <label><span>Bathrooms</span><input type="number" min="0" step="1" name="bathrooms" value="3"></label>
+          <label><span>Electrical points</span><input type="number" min="0" step="1" name="points" value="55"></label>
+        </div>
+        <div class="form-row">
+          <label><span>Preferred pincode</span><input type="text" inputmode="numeric" maxlength="6" name="pincode" value="201301"></label>
+          <label><span>Wastage allowance</span><select name="wastage"><option value="0.07">7%</option><option value="0.1">10%</option><option value="0.15">15%</option></select></label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Generate BOQ</button>
+      </form>
+    </div>
+    <div class="estimator-results" id="boq-estimator-results"></div>
+  </div>
+</section>
+
 <section class="section" style="background:white;">
   <div class="container">
     <div class="flex items-end justify-between mb-12 gap-6 flex-wrap reveal">
@@ -136,6 +214,38 @@
       <a href="shop.html" class="btn btn-outline">View All Products</a>
     </div>
     <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<section class="section project-desk-section" id="project-desk">
+  <div class="container">
+    <div class="flex items-end justify-between mb-12 gap-6 flex-wrap reveal">
+      <div>
+        <p class="eyebrow">Contractor Project Desk</p>
+        <h2 class="section-title">Run every site like a procurement account.</h2>
+      </div>
+      <a href="#contractors" class="btn btn-dark">Create Project RFQ</a>
+    </div>
+    <div class="project-desk-grid">
+      <article class="project-card reveal-left">
+        <span>Project 01</span>
+        <h3>Noida Sector 62 Residence</h3>
+        <p>Saved cement, paint, electrical and plumbing lists with repeat checkout.</p>
+        <div><strong>3</strong><small>open quotes</small></div>
+      </article>
+      <article class="project-card reveal">
+        <span>Project 02</span>
+        <h3>Contractor Credit Desk</h3>
+        <p>Collect GST, PO reference, payment terms and delivery slot before confirmation.</p>
+        <div><strong>7 days</strong><small>typical review</small></div>
+      </article>
+      <article class="project-card reveal-right">
+        <span>Project 03</span>
+        <h3>Invoice & Order History</h3>
+        <p>Downloadable quote summary, GST-ready order records and repeat material lists.</p>
+        <div><strong>100%</strong><small>site-wise records</small></div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -185,6 +295,7 @@
         <h3>AI Procurement Assistant</h3>
         <p>Handles product discovery, market signals, bulk quote preparation, GST-aware ordering and vendor comparison.</p>
         <ul>
+          <li>Read BOQ or cart and create RFQ summary</li>
           <li>Compare brands, rates and delivery timelines</li>
           <li>Convert material lists into purchase-ready carts</li>
           <li>Prepare contractor quote requirements</li>
@@ -226,6 +337,53 @@
   </div>
 </section>
 
+<section class="section rfq-section" id="bulk-rfq">
+  <div class="container rfq-grid">
+    <div class="rfq-copy reveal-left">
+      <p class="eyebrow">Bulk Quote / RFQ Upload</p>
+      <h2 class="section-title">Paste a material list and turn it into a buying request.</h2>
+      <p class="section-subtitle" style="margin-top:18px;">Designed for contractors who already have a BOQ, site note or WhatsApp material list. MODIT structures the request before sales confirms rate, stock, tax and dispatch.</p>
+      <div class="rfq-proof">
+        <span>Excel/PDF/image upload placeholder</span>
+        <span>GST and pincode captured</span>
+        <span>WhatsApp handoff ready</span>
+      </div>
+    </div>
+    <form class="rfq-form reveal-right" id="rfq-form">
+      <div class="form-row">
+        <label><span>Name / Company</span><input type="text" name="company" placeholder="ABC Contractors"></label>
+        <label><span>GSTIN / PO Ref</span><input type="text" name="gst" placeholder="Optional"></label>
+      </div>
+      <div class="form-row">
+        <label><span>Delivery pincode</span><input type="text" inputmode="numeric" maxlength="6" name="pincode" placeholder="201301"></label>
+        <label><span>Required by</span><input type="date" name="date"></label>
+      </div>
+      <label><span>Material list</span><textarea name="materials" rows="6" placeholder="Example: 80 bags UltraTech cement, 20 coils Polycab 1.5 sq mm, 900 sq ft tiles..."></textarea></label>
+      <label><span>Upload BOQ file</span><input type="file" name="boq" accept=".pdf,.xls,.xlsx,.csv,.jpg,.jpeg,.png"></label>
+      <div class="rfq-actions">
+        <button type="submit" class="btn btn-primary">Prepare RFQ</button>
+        <button type="button" class="btn btn-outline" id="send-rfq-whatsapp">Send to WhatsApp</button>
+      </div>
+      <div class="rfq-result" id="rfq-result"></div>
+    </form>
+  </div>
+</section>
+
+<section class="section local-seo-section">
+  <div class="container">
+    <div class="text-center mb-12 reveal">
+      <p class="eyebrow">Local Material Supply</p>
+      <h2 class="section-title">Built for city-by-city construction buying in India.</h2>
+    </div>
+    <div class="local-seo-grid">
+      <a href="cement-delivery-noida.html" class="local-seo-card reveal-left"><strong>Cement delivery in Noida</strong><span>Express cement, GST invoice and bulk support.</span></a>
+      <a href="electrical-materials-noida.html" class="local-seo-card reveal"><strong>Electrical materials in Noida</strong><span>Wires, switches, conduit and market signals.</span></a>
+      <a href="plumbing-materials-noida.html" class="local-seo-card reveal"><strong>Plumbing materials in Noida</strong><span>Pipes, fittings, sanitaryware and dispatch planning.</span></a>
+      <a href="contractor-bulk-material-supply-bihar.html" class="local-seo-card reveal-right"><strong>Bulk material supply in Bihar</strong><span>Launch waitlist for contractors and builders.</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="section app-section">
   <div class="container app-grid">
     <div class="reveal-left">
@@ -257,7 +415,8 @@
       <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="#">Careers</a><a href="#">Press</a></div>
       <div class="footer-col"><h4>Products</h4><a href="shop.html?category=cement">Cement</a><a href="shop.html?category=paint">Paint</a><a href="shop.html?category=electrical">Electrical</a><a href="shop.html?category=plumbing">Plumbing</a></div>
       <div class="footer-col"><h4>Support</h4><a href="#">Track Order</a><a href="#">Returns</a><a href="#">Help Center</a><a href="#">Warranty</a></div>
-      <div class="footer-col"><h4>Business</h4><a href="#contractors">Contractors</a><a href="#contractors">Bulk Orders</a><a href="#">Vendor Registration</a><a href="#">Corporate Orders</a></div>
+      <div class="footer-col"><h4>Business</h4><a href="#coverage">Pincode Check</a><a href="#boq-estimator">BOQ Estimator</a><a href="#contractors">Bulk Orders</a><a href="#project-desk">Project Desk</a></div>
+      <div class="footer-col"><h4>Local Pages</h4><a href="cement-delivery-noida.html">Cement Noida</a><a href="electrical-materials-noida.html">Electrical Noida</a><a href="plumbing-materials-noida.html">Plumbing Noida</a><a href="contractor-bulk-material-supply-bihar.html">Bihar Bulk Supply</a></div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 MODIT. All rights reserved.</p>
@@ -275,6 +434,6 @@
   </div>
 </div>
 
-<script src="js/app.js?v=20260713-production1"></script>
+<script src="js/app.js?v=20260713-brand1"></script>
 </body>
 </html>
